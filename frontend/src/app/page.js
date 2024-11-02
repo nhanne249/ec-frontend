@@ -4,16 +4,19 @@ import { getAllProducts } from "@/app/api/products";
 import {Card, CardFooter, Image, Button} from "@nextui-org/react";
 
 export default function Home() {
-  const [productsList, setProductsList] = useState();
-  const [isReceived, setIsReceived] = useState(false);
-  useEffect(() => {
-    getAllProducts().then((res) => {
-      setProductsList(res);
-      setIsReceived(true);
-    })
-  }, [isReceived])
+  // const [productsList, setProductsList] = useState();
+  // const [isReceived, setIsReceived] = useState(false);
+  // useEffect(() => {
+  //   getAllProducts().then((res) => {
+  //     setProductsList(res);
+  //     setIsReceived(true);
+  //   })
+  // }, [isReceived])
   return (
-    isReceived && <div className="grid grid-cols-4">{ productsList.map((product) => {
+    // isReceived &&
+    <div className="grid grid-cols-4">
+      Home
+      {/* {productsList.map((product) => {
         return(
           <Card
             isFooterBlurred
@@ -36,7 +39,7 @@ export default function Home() {
             </CardFooter>
           </Card>
         )
-    })}</div>
-      
+    })} */}
+    </div>
   );
 }
