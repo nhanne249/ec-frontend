@@ -1,6 +1,6 @@
 import React from "react";
 
-const About = () => {
-  return <div>About</div>;
+const Order = () => {
+  return <div>Order</div>;
 };
-export default About;
+export default Order;
