@@ -34,10 +34,10 @@ export default function RootLayout({ children }) {
                 <Link href='/' className="w-full h-full block content-center">Home</Link>
               </div>
               <div className="w-1/4 text-center group h-full !text-black relative font-semibold after:absolute after:h-0 after:w-0 after:bg-sky-800 after:left-1/2 overflow-hidden after:bottom-0 after:hover:h-1 after:hover:w-1 after:translate-x-full after:hover:scale-x-[300] after:hover:transition-all after:hover:duration-500 after:transition-all after:duration-500 transition-all duration-500 text-2xl">
-                <Link href='/' className="w-full h-full block content-center">Shop</Link>
+                <Link href='/products' className="w-full h-full block content-center">Shop</Link>
               </div>
               <div className="w-1/4 text-center group h-full !text-black relative font-semibold after:absolute after:h-0 after:w-0 after:bg-sky-800 after:left-1/2 overflow-hidden after:bottom-0 after:hover:h-1 after:hover:w-1 after:translate-x-full after:hover:scale-x-[300] after:hover:transition-all after:hover:duration-500 after:transition-all after:duration-500 transition-all duration-500 text-2xl">
-                <Link href='/' className="w-full h-full block content-center">About</Link>
+                <Link href='/about' className="w-full h-full block content-center">About</Link>
               </div>
               <div className="w-1/4 text-center group h-full !text-black relative font-semibold after:absolute after:h-0 after:w-0 after:bg-sky-800 after:left-1/2 overflow-hidden after:bottom-0 after:hover:h-1 after:hover:w-1 after:translate-x-full after:hover:scale-x-[300] after:hover:transition-all after:hover:duration-500 after:transition-all after:duration-500 transition-all duration-500 text-2xl">
                 <Link href='/' className="w-full h-full block content-center">Contact</Link>
