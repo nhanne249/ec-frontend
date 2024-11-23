@@ -3,6 +3,8 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { hasCookie } from "cookies-next";
 import { Input } from "@nextui-org/react";
+import { register } from "@/app/api/auth";
+import { toast } from "react-toastify";
 import "./styles.scss";
 
 const Register = () => {
@@ -23,8 +25,35 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(e);
-    console.log(formData);
+    const dataSend = {
+      username: e.target[0].value,
+      password: e.target[1].value,
+    };
+    register(dataSend).then((res) => {
+      if (res.user) {
+        toast.success("Tạo tài khoản thành công!", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+        router.push("/login");
+      } else
+        toast.error("Tài khoản đã tồn tại!", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+    });
   };
 
   if (hasCookie("token")) router.push("/customer/profile");

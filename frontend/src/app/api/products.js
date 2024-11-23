@@ -24,8 +24,33 @@ export const updateProductById = (data) => {
     return methods.patch(`${url}/${data.id}`, JSON.stringify(data));
 }
 
-export const getAllProducts = () => {
-    return methods.get(`${url}`); 
+export const getAllProducts = (data) => {
+    let postfix = '';
+    if (data.name) {
+        postfix+=data.name;
+    }
+    if (data.category) {
+        postfix += postfix.length > 1 ? "&category=" : '?category=' + data.category ;
+    }
+    if (data.minPrice) {
+        postfix += postfix.length > 1 ? "&minPrice=" : '?minPrice=' + Number(data.minPrice) ;
+    }
+    if (data.maxPrice) {
+        postfix += postfix.length > 1 ? "&maxPrice=" : '?maxPrice=' + Number(data.maxPrice) ;
+    }
+    if (data.brand) {
+        postfix += postfix.length > 1 ? "&brand=" : '?brand=' + data.brand ;
+    }
+    if (data.rating) {
+        postfix += postfix.length > 1 ? "&rating=" : '?rating=' + Number(data.rating) ;
+    }
+    if (data.desc) {
+        postfix += postfix.length > 1 ? "&desc=" : '?desc=' + data.desc ;
+    }
+    if (data.benefit) {
+        postfix += postfix.length > 1 ? "&benefit=" : '?benefit=' + data.benefit ;
+    }
+    return methods.get(`${url}${postfix}`); 
 }
 
 export const deleteProductById = (data) => {

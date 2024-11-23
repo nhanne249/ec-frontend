@@ -1,8 +1,10 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { hasCookie } from "cookies-next";
+import { hasCookie, setCookie } from "cookies-next";
 import { Input } from "@nextui-org/react";
+import { login } from "@/app/api/auth";
+import { toast } from "react-toastify";
 import "./styles.scss";
 export default function Login() {
   const router = useRouter();
@@ -22,8 +24,36 @@ export default function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(e);
-    console.log(formData);
+    const dataSend = {
+      username: e.target[0].value,
+      password: e.target[1].value,
+    };
+    login(dataSend).then((res) => {
+      if (res.accessToken) {
+        toast.success("Đăng nhập thành công!", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+        setCookie("token", res.accessToken, { path: "/", maxAge: 604800 });
+        router.push("/");
+      } else
+        toast.error("Đăng nhập thất bại!", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+    });
   };
 
   if (hasCookie("token")) router.push("/customer/profile");

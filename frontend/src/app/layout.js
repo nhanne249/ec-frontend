@@ -3,6 +3,8 @@ import { FiUser,FiSearch,FiHeart,FiShoppingCart } from "react-icons/fi";
 import Link from 'next/link'
 import "./globals.css";
 import { Button } from '@nextui-org/react';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const geistSans = localFont({
   src: "./assets/fonts/GeistVF.woff",
@@ -58,6 +60,7 @@ export default function RootLayout({ children }) {
         </div>
         <div className="w-screen min-h-[calc(100vh-124px)] h-[calc(100vh-124px)]">{children}</div>
         <div className="w-screen h-10 bg-sky-800 text-white text-xl">Footer</div>
+        <ToastContainer/>
       </body>
     </html>
   );
