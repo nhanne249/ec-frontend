@@ -8,19 +8,22 @@ import {
   CardHeader,
   Image,
 } from '@nextui-org/react';
-import { FaStar } from 'react-icons/fa';
+import { FaStar } from 'react-icons/fa'; // Import star icon for rating
 
 const ProductCard = ({ product }) => {
   const router = useRouter();
+  // Helper function to render stars based on rating
   const renderStars = rating => {
     const stars = [];
-    const fullStars = Math.floor(rating);
-    const hasHalfStar = rating % 1 !== 0;
+    const fullStars = Math.floor(rating); // Số sao đầy
+    const hasHalfStar = rating % 1 !== 0; // Kiểm tra có sao rưỡi hay không
 
     for (let i = 1; i <= 5; i++) {
       if (i <= fullStars) {
+        // Sao đầy
         stars.push(<FaStar key={i} className="text-yellow-400" />);
       } else if (i === fullStars + 1 && hasHalfStar) {
+        // Sao rưỡi
         stars.push(
           <FaStar
             key={i}
@@ -33,6 +36,7 @@ const ProductCard = ({ product }) => {
           />,
         );
       } else {
+        // Sao rỗng với viền vàng
         stars.push(
           <FaStar
             key={i}
@@ -47,7 +51,7 @@ const ProductCard = ({ product }) => {
   };
 
   const viewProductDetail = () => {
-    router.push(`/product/${product._id}`);
+    router.push(`/product/${product._id}`); // Điều hướng đến trang chi tiết
   };
 
   const addToCart = () => {

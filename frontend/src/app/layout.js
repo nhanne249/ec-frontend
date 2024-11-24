@@ -3,6 +3,8 @@ import { FiUser, FiSearch, FiHeart, FiShoppingCart } from 'react-icons/fi';
 import Link from 'next/link';
 import './globals.css';
 import { Button } from '@nextui-org/react';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const geistSans = localFont({
   src: './assets/fonts/GeistVF.woff',
@@ -24,9 +26,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} min-h-screen h-screen w-screen`}
+        className={`${geistSans.variable} ${geistMono.variable} h-screen w-screen flex flex-col justify-between`}
       >
-        <div className="w-screen h-16 px-5 mb-5 fixed top-0 left-0 z-50 bg-white shadow-md">
+        <div className="w-screen h-16 px-5 mb-5 sticky top-0 left-0 z-50 bg-white shadow-md">
           <div className="w-full grid h-full grid-cols-3">
             <Link
               href="/"
@@ -42,7 +44,7 @@ export default function RootLayout({ children }) {
               </div>
               <div className="w-1/4 text-center group h-full !text-black relative font-semibold after:absolute after:h-0 after:w-0 after:bg-sky-800 after:left-1/2 overflow-hidden after:bottom-0 after:hover:h-1 after:hover:w-1 after:translate-x-full after:hover:scale-x-[300] after:hover:transition-all after:hover:duration-500 after:transition-all after:duration-500 transition-all duration-500 text-2xl">
                 <Link
-                  href="/products"
+                  href="/shop"
                   className="w-full h-full block content-center"
                 >
                   Shop
@@ -81,13 +83,13 @@ export default function RootLayout({ children }) {
             </div>
           </div>
         </div>
-        <div className="w-screen min-h-[calc(100vh-26px)] h-[calc(100vh-26px)] pt-16 pb-10">
+        <div className="w-screen min-h-[calc(100vh-124px)] h-[calc(100vh-124px)]">
           {children}
         </div>
-
-        <div className="w-screen h-10 bg-sky-800 text-white text-xl fixed bottom-0 left-0 z-50">
+        <div className="w-screen h-10 bg-sky-800 text-white text-xl fixed bottom-0">
           Footer
         </div>
+        <ToastContainer />
       </body>
     </html>
   );
