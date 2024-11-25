@@ -26,7 +26,6 @@ export const updateProductById = data => {
 
 export const getAllProducts = data => {
   let postfix = '';
-  console.log(data);
   if (data?.name && data?.name != '') {
     postfix += '?name=' + data.name;
   }
@@ -57,7 +56,6 @@ export const getAllProducts = data => {
   if (data?.benefit && data?.benefit != '') {
     postfix += (postfix.length > 1 ? '&benefit=' : '?benefit=') + data.benefit;
   }
-  console.log(postfix);
   return methods.get(`${url}${postfix}`);
 };
 
