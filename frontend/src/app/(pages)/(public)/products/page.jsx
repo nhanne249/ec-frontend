@@ -13,6 +13,7 @@ import {
   SelectItem,
 } from '@nextui-org/react';
 import { FaStar } from 'react-icons/fa';
+import { toast } from 'react-toastify';
 
 const Products = () => {
   const [products, setProducts] = useState([]);
@@ -40,13 +41,23 @@ const Products = () => {
   // Fetch products with filters
   const fetchProducts = async filterData => {
     setLoading(true);
-    try {
-      const products = await getAllProducts(filterData);
-      setProducts(products);
-    } catch (error) {
-      console.error('Error fetching products:', error);
-      setProducts([]);
-    }
+    await getAllProducts(filterData)
+      .then(res => {
+        setProducts(res);
+      })
+      .catch(error => {
+        setProducts([]);
+        toast.error(error.message, {
+          position: 'top-right',
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'colored',
+        });
+      });
     setLoading(false);
   };
 

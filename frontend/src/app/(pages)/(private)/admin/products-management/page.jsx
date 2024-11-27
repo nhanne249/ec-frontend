@@ -16,6 +16,7 @@ import {
 } from '@nextui-org/react';
 import { getAllProducts } from '@/app/api/products';
 import { FaStar } from 'react-icons/fa';
+import { toast } from 'react-toastify';
 
 const ProductsManagement = () => {
   const [products, setProducts] = useState([]);
@@ -84,36 +85,48 @@ const ProductsManagement = () => {
 
   const fetchProducts = async filterData => {
     setLoading(true);
-    try {
-      const products = await getAllProducts(filterData);
-      console.log(products);
-      setProducts(products);
-    } catch (error) {
-      console.error('Error fetching products:', error);
-      setProducts([]);
-    }
+    await getAllProducts(filterData)
+      .then(res => {
+        setProducts(res);
+      })
+      .catch(error => {
+        setProducts([]);
+        toast.error(error.message, {
+          position: 'top-right',
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'colored',
+        });
+      });
     setLoading(false);
   };
 
   const handleChange = e => {
     const { name, value } = e.target;
 
-    if (
-      name === 'minPrice' &&
-      (Number(value) < 0 || Number(value) > Number(filters.maxPrice))
-    )
-      return;
-    if (
-      name === 'maxPrice' &&
-      (Number(value) < 0 || Number(value) < Number(filters.minPrice))
-    )
-      return;
-
-    setFilters(prev => ({
-      ...prev,
-      [name]:
-        name === 'minPrice' || name === 'maxPrice' ? Number(value) : value,
-    }));
+    if (name === 'minPrice') {
+      if (
+        Number(value) < 0 ||
+        (filters.maxPrice && Number(value) > Number(filters.maxPrice))
+      ) {
+        return;
+      }
+      setFilters(prev => ({ ...prev, minPrice: Number(value) }));
+    } else if (name === 'maxPrice') {
+      if (
+        Number(value) < 0 ||
+        (filters.minPrice && Number(value) < Number(filters.minPrice))
+      ) {
+        return;
+      }
+      setFilters(prev => ({ ...prev, maxPrice: Number(value) }));
+    } else {
+      setFilters(prev => ({ ...prev, [name]: value }));
+    }
   };
 
   const applyFilters = () => fetchProducts(filters);
@@ -153,6 +166,8 @@ const ProductsManagement = () => {
           <Input
             label="Min Price"
             type="number"
+            min={0}
+            max={filters.maxPrice}
             placeholder="Enter min price"
             name="minPrice"
             value={filters.minPrice}
@@ -161,6 +176,7 @@ const ProductsManagement = () => {
           <Input
             label="Max Price"
             type="number"
+            min={filters.minPrice}
             placeholder="Enter max price"
             name="maxPrice"
             value={filters.maxPrice}
