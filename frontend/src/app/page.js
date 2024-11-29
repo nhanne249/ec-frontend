@@ -1,5 +1,3 @@
-'use client'
-import { useState,useEffect } from "react";
 import { getAllProducts } from "@/app/api/products";
 import {Card, CardFooter, Image, Button} from "@nextui-org/react";
 

@@ -1,25 +1,28 @@
-'use client'
 import httpHandler from './axios.config.js';
 import { API_DOMAIN } from '../constant/api.constant.js';
-
-function get(domain, url, config = {}) {
-  return httpHandler(domain).get(`${url}`, config);
+async function get(domain, url, config = {}) {
+  const axiosHttp = await httpHandler(domain);
+  return axiosHttp.get(`${url}`, config);
 }
 
-function post(domain, url, data, config = {}) {
-  return httpHandler(domain).post(`${url}`, data, config);
+async function post(domain, url, data, config = {}) {
+  const axiosHttp = await httpHandler(domain);
+  return axiosHttp.post(`${url}`, data, config);
 }
 
-function put(domain, url, data, config = {}) {
-  return httpHandler(domain).put(`${url}`, data, config);
+async function put(domain, url, data, config = {}) {
+  const axiosHttp = await httpHandler(domain);
+  return axiosHttp.put(`${url}`, data, config);
 }
 
-function patch(domain, url, config = {}) {
-  return httpHandler(domain).patch(`${url}`, config);
+async function patch(domain, url, data, config = {}) {
+  const axiosHttp = await httpHandler(domain);
+  return axiosHttp.patch(`${url}`, data, config);
 }
 
-function del(domain, url, config = {}) {
-  return httpHandler(domain).delete(`${url}`, config);
+async function del(domain, url, config = {}) {
+  const axiosHttp = await httpHandler(domain);
+  return axiosHttp.delete(`${url}`, config);
 }
 
 export const methods = {
@@ -32,8 +35,8 @@ export const methods = {
   put: (url, data, config = {}) => {
     return put(API_DOMAIN.API, url, data, config);
   },
-  patch: (url, config = {}) => {
-    return patch(API_DOMAIN.API, url, config);
+  patch: (url, data, config= {}) => {
+    return patch(API_DOMAIN.API, url, data, config);
   },
   delete: (url, config = {}) => {
     return del(API_DOMAIN.API, url, config);

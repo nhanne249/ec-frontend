@@ -83,10 +83,10 @@ export default function RootLayout({ children }) {
             </div>
           </div>
         </div>
-        <div className="w-screen min-h-[calc(100vh-124px)] h-[calc(100vh-124px)]">
+        <div className="w-screen h-full min-h-[calc(100vh-124px)]">
           {children}
         </div>
-        <div className="w-screen h-10 bg-sky-800 text-white text-xl">
+        <div className="w-screen fixed bottom-0 h-10 bg-sky-800 text-white text-xl">
           Footer
         </div>
         <ToastContainer />
