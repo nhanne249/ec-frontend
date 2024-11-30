@@ -18,9 +18,9 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={` h-full w-screen min-h-screen`}
+        className= "h-screen w-screen min-h-screen flex flex-col"
       >
-        <div className="w-full h-16 px-5 fixed  top-0 left-0 z-50 bg-white shadow-md">
+        <div className="w-full h-16 px-5 fixed top-0 left-0 z-50 bg-white shadow-md">
           <div className="w-full grid h-full grid-cols-3">
             <Link
               href="/"
@@ -93,10 +93,10 @@ export default async function RootLayout({ children }) {
             </div>
           </div>
         </div>
-        <div className="w-full min-h-[calc(100vh-40px)] h-[calc(100vh-40px)] pt-16">
+        <div className="w-full flex-grow pt-16">
           {children}
         </div>
-        <div className="w-full h-10 sticky bg-sky-800 text-white text-base">
+        <div className="w-full h-10 bg-sky-800 text-white text-base">
           Footer
         </div>
         <ToastContainer />
