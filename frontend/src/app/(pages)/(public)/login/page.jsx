@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { hasCookie, setCookie } from "cookies-next";
 import { Input } from "@nextui-org/react";
-import { login } from "@/app/api/auth";
+import { login } from "@/app/api/server/auth";
 import { toast } from "react-toastify";
 import "./styles.scss";
 export default function Login() {

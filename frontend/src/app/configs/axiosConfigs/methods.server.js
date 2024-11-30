@@ -1,4 +1,4 @@
-import httpHandler from './axios.config.js';
+import httpHandler from './axios.server.js';
 import { API_DOMAIN } from '../constant/api.constant.js';
 async function get(domain, url, config = {}) {
   const axiosHttp = await httpHandler(domain);

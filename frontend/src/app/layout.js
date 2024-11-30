@@ -1,21 +1,9 @@
-import localFont from 'next/font/local';
-import { FiUser, FiSearch, FiHeart, FiShoppingCart } from 'react-icons/fi';
+import { FiUser, FiSearch, FiShoppingCart } from 'react-icons/fi';
 import Link from 'next/link';
 import './globals.css';
 import { Button } from '@nextui-org/react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-const geistSans = localFont({
-  src: './assets/fonts/GeistVF.woff',
-  variable: '--font-geist-sans',
-  weight: '100 900',
-});
-const geistMono = localFont({
-  src: './assets/fonts/GeistMonoVF.woff',
-  variable: '--font-geist-mono',
-  weight: '100 900',
-});
 
 export const metadata = {
   title: 'EC',
@@ -26,9 +14,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} h-screen w-screen flex flex-col justify-between`}
+        className={` h-full w-screen min-h-screen`}
       >
-        <div className="w-screen h-16 px-5 mb-5 sticky top-0 left-0 z-50 bg-white shadow-md">
+        <div className="w-full h-16 px-5 fixed  top-0 left-0 z-50 bg-white shadow-md">
           <div className="w-full grid h-full grid-cols-3">
             <Link
               href="/"
@@ -83,10 +71,10 @@ export default function RootLayout({ children }) {
             </div>
           </div>
         </div>
-        <div className="w-screen h-full min-h-[calc(100vh-124px)]">
+        <div className="w-full h-full pt-20">
           {children}
         </div>
-        <div className="w-screen fixed bottom-0 h-10 bg-sky-800 text-white text-xl">
+        <div className="w-full h-10 bg-sky-800 text-white text-base">
           Footer
         </div>
         <ToastContainer />

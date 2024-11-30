@@ -1,4 +1,4 @@
-import { getAllProducts } from "@/app/api/products";
+import { getAllProducts } from "@/app/api/server/products";
 import {Card, CardFooter, Image, Button} from "@nextui-org/react";
 
 export default function Home() {

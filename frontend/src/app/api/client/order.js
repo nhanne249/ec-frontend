@@ -1,4 +1,4 @@
-import { methods } from "@/app/configs/axiosConfigs/methods";
+import { methods } from "@/app/configs/axiosConfigs/methods.client";
 
 const url = "/orders"
 export const createOrder = (data) => {  

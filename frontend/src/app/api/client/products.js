@@ -1,4 +1,4 @@
-import { methods } from '@/app/configs/axiosConfigs/methods';
+import { methods } from "@/app/configs/axiosConfigs/methods.client";
 
 const url = '/products';
 export const createProduct = (data) => {
@@ -24,7 +24,7 @@ export const updateProductById = (data) => {
   return methods.patch(`${url}/${data.id}`, JSON.stringify(data));
 };
 
-export const getAllProducts = (data) => {
+export const getAllProducts = (data='') => {
   let postfix = '';
   if (data?.name && data?.name != '') {
     postfix += '?name=' + data.name;
@@ -56,6 +56,7 @@ export const getAllProducts = (data) => {
   if (data?.benefit && data?.benefit != '') {
     postfix += (postfix.length > 1 ? '&benefit=' : '?benefit=') + data.benefit;
   }
+  console.log(`${url}${postfix}`)
   return methods.get(`${url}${postfix}`);
 };
 

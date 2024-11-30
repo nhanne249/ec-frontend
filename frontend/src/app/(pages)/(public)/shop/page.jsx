@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import ProductCard from "./ProductCard";
-import { getAllProducts } from "@/app/api/products";
+import { getAllProducts } from "@/app/api/client/products";
 import { Card, Skeleton, CardHeader, CardBody, Input, Button, Select, SelectItem } from "@nextui-org/react";
 import { FaStar } from "react-icons/fa";
 
@@ -28,21 +28,9 @@ const Shop = () => {
     return stars;
   };
 
-  // Fetch products with filters
-  const fetchProducts = async (filterData) => {
-    setLoading(true);
-    try {
-      const products = await getAllProducts(filterData);
-      setProducts(products);
-    } catch (error) {
-      console.error("Error fetching products:", error);
-      setProducts([]);
-    }
-    setLoading(false);
-  };
-
   // Handle input changes with validation
   const handleChange = (e) => {
+    console.log(e);
     const { name, value } = e.target;
 
     if (name === "minPrice") {
@@ -60,18 +48,16 @@ const Shop = () => {
     }
   };
 
-  // Apply filters with additional validation
-  const applyFilters = () => {
-    fetchProducts(filters);
-  };
-
   // Initial fetch
   useEffect(() => {
-    fetchProducts();
+    getAllProducts(filters).then((res) => {
+      setProducts(res);
+      setLoading(false);
+    });
   }, []);
 
   return (
-    <div className="px-20 lg:px-30 2xl:px-40 pb-20">
+    <div className="px-20 lg:px-30 2xl:px-40 pb-20 h-full w-full">
       <h1 className="text-3xl font-bold text-center mb-10">Products</h1>
 
       {/* Filters Section */}
@@ -119,9 +105,7 @@ const Shop = () => {
           </Select>
         </div>
         <div className="flex justify-end mt-4">
-          <Button color="primary" onClick={applyFilters}>
-            Apply Filters
-          </Button>
+          <Button color="primary">Apply Filters</Button>
         </div>
       </div>
 

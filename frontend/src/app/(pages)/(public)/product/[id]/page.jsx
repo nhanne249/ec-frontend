@@ -1,6 +1,6 @@
 import axios from "axios";
 import React from "react";
-import { getProductById } from "@/app/api/products";
+import { getProductById } from "@/app/api/server/products";
 import { Button, Card, CardFooter, Divider, Image, Input } from "@nextui-org/react";
 
 const StarRating = ({ rate }) => {
