@@ -2,8 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';  
-import { getCookie } from 'cookies-next';  
-
+import { getCookie } from 'cookies-next'; 
 const withAuth = (Component, allowedRoles) => {  
   return function ProtectedComponent(props) {  
     const router = useRouter();  
