@@ -1,4 +1,4 @@
-import { methods } from "@/app/configs/axiosConfigs/methods.server";
+import { methods } from "@/app/configs/axiosConfigs/methods.client";
 
 const url = "/auth"
 export const login= (data) => {
