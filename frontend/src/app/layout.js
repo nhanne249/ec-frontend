@@ -71,10 +71,10 @@ export default function RootLayout({ children }) {
             </div>
           </div>
         </div>
-        <div className="w-full h-full pt-20">
+        <div className="w-full min-h-[calc(100vh-40px)] h-full pt-20">
           {children}
         </div>
-        <div className="w-full h-10 bg-sky-800 text-white text-base">
+        <div className="w-full h-10 sticky bg-sky-800 text-white text-base">
           Footer
         </div>
         <ToastContainer />

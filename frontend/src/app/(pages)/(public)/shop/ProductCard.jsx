@@ -1,19 +1,12 @@
-import React from 'react';
-import { useRouter } from 'next/navigation';
-import {
-  Button,
-  Card,
-  CardBody,
-  CardFooter,
-  CardHeader,
-  Image,
-} from '@nextui-org/react';
-import { FaStar } from 'react-icons/fa'; // Import star icon for rating
+import React from "react";
+import { useRouter } from "next/navigation";
+import { Button, Card, CardBody, CardFooter, CardHeader, Image } from "@nextui-org/react";
+import { FaStar } from "react-icons/fa"; // Import star icon for rating
 
 const ProductCard = ({ product }) => {
   const router = useRouter();
   // Helper function to render stars based on rating
-  const renderStars = rating => {
+  const renderStars = (rating) => {
     const stars = [];
     const fullStars = Math.floor(rating); // Số sao đầy
     const hasHalfStar = rating % 1 !== 0; // Kiểm tra có sao rưỡi hay không
@@ -29,21 +22,15 @@ const ProductCard = ({ product }) => {
             key={i}
             className="text-yellow-400"
             style={{
-              clipPath: 'inset(0 50% 0 0)',
-              stroke: 'currentColor',
-              strokeWidth: '1',
+              clipPath: "inset(0 50% 0 0)",
+              stroke: "currentColor",
+              strokeWidth: "1",
             }}
-          />,
+          />
         );
       } else {
         // Sao rỗng với viền vàng
-        stars.push(
-          <FaStar
-            key={i}
-            className="text-transparent border border-yellow-400"
-            style={{ stroke: 'currentColor', strokeWidth: '1' }}
-          />,
-        );
+        stars.push(<FaStar key={i} className="text-transparent border border-yellow-400" style={{ stroke: "currentColor", strokeWidth: "1" }} />);
       }
     }
 
@@ -59,14 +46,14 @@ const ProductCard = ({ product }) => {
   };
 
   return (
-    <div className="cursor-pointer" onClick={viewProductDetail}>
-      <Card className="shadow hover:shadow-lg transition-all relative rounded bg-gray-100">
+    <div className="cursor-pointer h-full" onClick={viewProductDetail}>
+      <Card className="shadow h-full hover:shadow-lg transition-all relative rounded bg-gray-100">
         <CardHeader className="!p-0">
           <Image
             src={
               product.images && product.images.length > 0
                 ? product.images[0]
-                : 'https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-website-design-mobile-app-no-photo-available_87543-11093.jpg'
+                : "https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-website-design-mobile-app-no-photo-available_87543-11093.jpg"
             }
             alt={product.name}
             className="w-full object-cover rounded-none"

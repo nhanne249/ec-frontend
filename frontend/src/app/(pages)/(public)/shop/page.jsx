@@ -52,9 +52,9 @@ const Shop = () => {
   useEffect(() => {
     getAllProducts(filters).then((res) => {
       setProducts(res);
-      setLoading(false);
+      setLoading(true);
     });
-  }, []);
+  }, [loading]);
 
   return (
     <div className="px-20 lg:px-30 2xl:px-40 pb-20 h-full w-full">
@@ -70,14 +70,6 @@ const Shop = () => {
             <SelectItem key="Shampoo">Shampoo</SelectItem>
           </Select>
           <Input label="Name" placeholder="Enter product name" name="name" value={filters.name} onChange={handleChange} />
-
-          {/* <Input
-            label="Brand"
-            placeholder="Enter brand"
-            name="brand"
-            value={filters.brand}
-            onChange={handleChange}
-          /> */}
           <Input
             label="Min Price"
             type="number"
@@ -105,15 +97,17 @@ const Shop = () => {
           </Select>
         </div>
         <div className="flex justify-end mt-4">
-          <Button color="primary">Apply Filters</Button>
+          <Button color="primary" onClick={() => setLoading(false)}>
+            Apply Filters
+          </Button>
         </div>
       </div>
 
       {/* Products Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-10">
-        {loading ? (
+        {!loading ? (
           Array.from({ length: 4 }).map((_, index) => (
-            <Card key={index} className="p-4" radius="lg">
+            <Card key={index} className="p-4 h-full" radius="lg">
               <CardHeader>
                 <Skeleton className="rounded-lg">
                   <div className="h-24 rounded-lg bg-default-300"></div>
