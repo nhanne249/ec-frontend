@@ -1,19 +1,29 @@
-import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+'use client';  
 
-const withAuth = (Component, allowedRoles) => {
-  return function ProtectedComponent(props) {
-    const router = useRouter();
-    const role = typeof window !== 'undefined' ? localStorage.getItem('role') : null;
+import { useRouter } from 'next/navigation'; // Thay đổi import  
+import { useEffect, useState } from 'react';  
+import { getCookie } from 'cookies-next';  
 
-    useEffect(() => {
-      if (!allowedRoles.includes(role || 'guest')) {
-        router.replace('/404');
-      }
-    }, [role]);
+const withAuth = (Component, allowedRoles) => {  
+  return function ProtectedComponent(props) {  
+    const router = useRouter();  
+    const [loading, setLoading] = useState(true);  
 
-    return allowedRoles.includes(role || 'guest') ? <Component {...props} /> : null;
-  };
-};
+    const role = getCookie('role');  
 
-export default withAuth;
+    useEffect(() => {  
+      if (role && !allowedRoles.includes(role)) {  
+        router.replace('/404');  
+      }  
+      setLoading(false);  
+    }, [role, router]);  
+
+    if (loading) {  
+      return <div>Loading...</div>;  
+    }  
+
+    return allowedRoles.includes(role) ? <Component {...props} /> : null;  
+  };  
+};  
+
+export default withAuth;  

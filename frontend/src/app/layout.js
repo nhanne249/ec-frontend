@@ -1,7 +1,7 @@
 import { FiUser, FiSearch, FiShoppingCart } from 'react-icons/fi';
 import Link from 'next/link';
 import './globals.css';
-import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem,Button } from '@nextui-org/react';
+import { Button } from '@nextui-org/react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { cookies } from 'next/headers';
@@ -57,29 +57,12 @@ export default async function RootLayout({ children }) {
               </div>
             </div>
             <div className="w-1/2 h-full flex flex-grow justify-between justify-self-end items-center">
-              {role == 'admin' && <Dropdown>
-                <DropdownTrigger>
-                  <Button 
-                    variant="bordered" 
-                  >
-                    <FiUser />
-                  </Button>
-                </DropdownTrigger>
-                <DropdownMenu aria-label="Static Actions">
-                  <DropdownItem key="new">New file</DropdownItem>
-                  <DropdownItem key="copy">Copy link</DropdownItem>
-                  <DropdownItem key="edit">Edit file</DropdownItem>
-                  <DropdownItem key="delete" className="text-danger" color="danger">
-                    Delete file
-                  </DropdownItem>
-                </DropdownMenu>
-              </Dropdown>}
-              {role == 'guest' && <Link
+              <Link
                 href="/login"
                 className="w-1/3 h-full flex items-center justify-center bg-transparent rounded-none relative font-semibold after:absolute after:h-0 after:w-0 after:bg-sky-800 after:left-1/2 overflow-hidden after:bottom-0 after:hover:h-1 after:hover:w-1 after:translate-x-full after:hover:scale-x-[300] after:hover:transition-all after:hover:duration-500 after:transition-all after:duration-500 transition-all duration-500"
               >
                 <FiUser />
-              </Link>}
+              </Link>
               
               <Button className="w-1/3 h-full flex items-center justify-center bg-transparent rounded-none relative font-semibold after:absolute after:h-0 after:w-0 after:bg-sky-800 after:left-1/2 overflow-hidden after:bottom-0 after:hover:h-1 after:hover:w-1 after:translate-x-full after:hover:scale-x-[300] after:hover:transition-all after:hover:duration-500 after:transition-all after:duration-500 transition-all duration-500">
                 <FiSearch />
@@ -93,7 +76,7 @@ export default async function RootLayout({ children }) {
             </div>
           </div>
         </div>
-        <div className="w-full flex-grow pt-16">
+        <div className="w-full flex-grow pt-16 bg-slate-100">
           {children}
         </div>
         <div className="w-full h-10 bg-sky-800 text-white text-base">

@@ -1,9 +1,9 @@
 export const metadata = {
-  title: "Shop",
-  description: "Shop",
+  title: "About",
+  description: "About",
 };
 
-export default function ShopLayout({ children }) {
+export default function AboutLayout({ children }) {
   return (
       <div className="h-full w-full bg-white pt-5">
         {children}

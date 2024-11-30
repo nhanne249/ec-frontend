@@ -1,7 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { hasCookie, setCookie } from "cookies-next";
+import { hasCookie, setCookie, getCookie } from "cookies-next";
 import { Input } from "@nextui-org/react";
 import { login } from "@/app/api/client/auth";
 import { toast } from "react-toastify";
@@ -40,7 +40,9 @@ export default function Login() {
           progress: undefined,
           theme: "colored",
         });
+        console.log(res.user.role);
         setCookie("token", res.accessToken, { path: "/", maxAge: 604800 });
+        setCookie("role", res.user.role, { path: "/", maxAge: 604800 });
         router.push("/");
       } else
         toast.error("Đăng nhập thất bại!", {
@@ -56,7 +58,7 @@ export default function Login() {
     });
   };
 
-  if (hasCookie("token")) router.push("/customer/profile");
+  if (hasCookie("token")) router.push(`/${getCookie("role")}`);
 
   return (
     <div className="w-full h-full flex justify-center items-center flex-col bg-auth">
