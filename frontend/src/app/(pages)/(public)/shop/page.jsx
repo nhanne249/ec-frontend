@@ -1,23 +1,32 @@
-"use client";
-import React, { useState, useEffect } from "react";
-import ProductCard from "./ProductCard";
-import { getAllProducts } from "@/app/api/client/products";
-import { Card, Skeleton, CardHeader, CardBody, Input, Button, Select, SelectItem } from "@nextui-org/react";
-import { FaStar } from "react-icons/fa";
+'use client';
+import React, { useState, useEffect } from 'react';
+import ProductCard from './ProductCard';
+import { getAllProducts } from '@/app/api/client/products';
+import {
+  Card,
+  Skeleton,
+  CardHeader,
+  CardBody,
+  Input,
+  Button,
+  Select,
+  SelectItem,
+} from '@nextui-org/react';
+import { FaStar } from 'react-icons/fa';
 
 const Shop = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [filters, setFilters] = useState({
-    name: "",
-    category: "",
-    minPrice: "",
-    maxPrice: "",
-    brand: "",
-    rating: "",
+    name: '',
+    category: '',
+    minPrice: '',
+    maxPrice: '',
+    brand: '',
+    rating: '',
   });
 
-  const renderStars = (rating) => {
+  const renderStars = rating => {
     const stars = [];
     const fullStars = Math.floor(rating);
 
@@ -29,29 +38,35 @@ const Shop = () => {
   };
 
   // Handle input changes with validation
-  const handleChange = (e) => {
+  const handleChange = e => {
     console.log(e);
     const { name, value } = e.target;
 
-    if (name === "minPrice") {
-      if (Number(value) < 0 || (filters.maxPrice && Number(value) > Number(filters.maxPrice))) {
+    if (name === 'minPrice') {
+      if (
+        Number(value) < 0 ||
+        (filters.maxPrice && Number(value) > Number(filters.maxPrice))
+      ) {
         return;
       }
-      setFilters((prev) => ({ ...prev, minPrice: Number(value) }));
-    } else if (name === "maxPrice") {
-      if (Number(value) < 0 || (filters.minPrice && Number(value) < Number(filters.minPrice))) {
+      setFilters(prev => ({ ...prev, minPrice: Number(value) }));
+    } else if (name === 'maxPrice') {
+      if (
+        Number(value) < 0 ||
+        (filters.minPrice && Number(value) < Number(filters.minPrice))
+      ) {
         return;
       }
-      setFilters((prev) => ({ ...prev, maxPrice: Number(value) }));
+      setFilters(prev => ({ ...prev, maxPrice: Number(value) }));
     } else {
-      setFilters((prev) => ({ ...prev, [name]: value }));
+      setFilters(prev => ({ ...prev, [name]: value }));
     }
   };
 
   // Initial fetch
   useEffect(() => {
-    getAllProducts(filters).then((res) => {
-      setProducts(res);
+    getAllProducts(filters).then(res => {
+      setProducts(res.results);
       setLoading(true);
     });
   }, [loading]);
@@ -64,12 +79,24 @@ const Shop = () => {
       <div className="bg-[#F9F1E7] p-6 rounded-lg shadow mb-10">
         <h2 className="text-lg font-semibold mb-4">Filter Products</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
-          <Select label="Category" placeholder="Select category" name="category" value={filters.category} onChange={handleChange}>
+          <Select
+            label="Category"
+            placeholder="Select category"
+            name="category"
+            value={filters.category}
+            onChange={handleChange}
+          >
             <SelectItem key="">All</SelectItem>
             <SelectItem key="Haircare">Haircare</SelectItem>
             <SelectItem key="Shampoo">Shampoo</SelectItem>
           </Select>
-          <Input label="Name" placeholder="Enter product name" name="name" value={filters.name} onChange={handleChange} />
+          <Input
+            label="Name"
+            placeholder="Enter product name"
+            name="name"
+            value={filters.name}
+            onChange={handleChange}
+          />
           <Input
             label="Min Price"
             type="number"
@@ -89,9 +116,15 @@ const Shop = () => {
             value={filters.maxPrice}
             onChange={handleChange}
           />
-          <Select label="Rating" placeholder="Select rating" name="rating" value={filters.rating} onChange={handleChange}>
+          <Select
+            label="Rating"
+            placeholder="Select rating"
+            name="rating"
+            value={filters.rating}
+            onChange={handleChange}
+          >
             <SelectItem key="">All</SelectItem>
-            {[1, 2, 3, 4, 5].map((stars) => (
+            {[1, 2, 3, 4, 5].map(stars => (
               <SelectItem key={stars}>{String(stars)}</SelectItem>
             ))}
           </Select>
@@ -127,9 +160,13 @@ const Shop = () => {
             </Card>
           ))
         ) : products.length > 0 ? (
-          products.map((product, index) => <ProductCard key={index} product={product} />)
+          products.map((product, index) => (
+            <ProductCard key={index} product={product} />
+          ))
         ) : (
-          <div className="col-span-full text-center text-lg font-medium">No products found.</div>
+          <div className="col-span-full text-center text-lg font-medium">
+            No products found.
+          </div>
         )}
       </div>
     </div>

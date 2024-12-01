@@ -1,7 +1,7 @@
-import { methods } from "@/app/configs/axiosConfigs/methods.client";
+import { methods } from '@/app/configs/axiosConfigs/methods.client';
 
 const url = '/products';
-export const createProduct = (data) => {
+export const createProduct = data => {
   // const dataSended = {
   //     name: data.name,
   //     price: data.price, //price is float
@@ -17,14 +17,14 @@ export const createProduct = (data) => {
   // }
   return methods.post(`${url}`, JSON.stringify(data));
 };
-export const getProductById = (data) => {
+export const getProductById = data => {
   return methods.get(`${url}/${data}`);
 };
-export const updateProductById = (data) => {
-  return methods.patch(`${url}/${data.id}`, JSON.stringify(data));
+export const updateProductById = (id, data) => {
+  return methods.patch(`${url}/${id}`, JSON.stringify(data));
 };
 
-export const getAllProducts = (data='') => {
+export const getAllProducts = (data = '') => {
   let postfix = '';
   if (data?.name && data?.name != '') {
     postfix += '?name=' + data.name;
@@ -56,10 +56,10 @@ export const getAllProducts = (data='') => {
   if (data?.benefit && data?.benefit != '') {
     postfix += (postfix.length > 1 ? '&benefit=' : '?benefit=') + data.benefit;
   }
-  console.log(`${url}${postfix}`)
+  console.log(`${url}${postfix}`);
   return methods.get(`${url}${postfix}`);
 };
 
-export const deleteProductById = (data) => {
+export const deleteProductById = data => {
   return methods.delete(`${url}/${data}`);
 };
