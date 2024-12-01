@@ -1,8 +1,7 @@
-'use client'
-import httpHandler from './axios.config.js';
+"use client"
+import httpHandler from './axios.client.js';
 import { API_DOMAIN } from '../constant/api.constant.js';
-
-function get(domain, url, config = {}) {
+async function get(domain, url, config = {}) {
   return httpHandler(domain).get(`${url}`, config);
 }
 
@@ -14,8 +13,8 @@ function put(domain, url, data, config = {}) {
   return httpHandler(domain).put(`${url}`, data, config);
 }
 
-function patch(domain, url, config = {}) {
-  return httpHandler(domain).patch(`${url}`, config);
+function patch(domain, url, data, config = {}) {
+  return httpHandler(domain).patch(`${url}`, data, config);
 }
 
 function del(domain, url, config = {}) {
@@ -32,8 +31,8 @@ export const methods = {
   put: (url, data, config = {}) => {
     return put(API_DOMAIN.API, url, data, config);
   },
-  patch: (url, config = {}) => {
-    return patch(API_DOMAIN.API, url, config);
+  patch: (url, data, config= {}) => {
+    return patch(API_DOMAIN.API, url, data, config);
   },
   delete: (url, config = {}) => {
     return del(API_DOMAIN.API, url, config);

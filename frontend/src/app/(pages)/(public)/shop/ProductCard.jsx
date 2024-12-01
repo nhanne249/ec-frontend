@@ -29,19 +29,20 @@ const ProductCard = ({ product }) => {
             key={i}
             className="text-yellow-400"
             style={{
-              clipPath: 'inset(0 50% 0 0)',
-              stroke: 'currentColor',
-              strokeWidth: '1',
+              clipPath: 'polygon(0 0, 50% 0, 50% 100%, 0 100%)',
             }}
           />,
         );
       } else {
-        // Sao rỗng với viền vàng
+        // Sao rỗng (viền vàng)
         stars.push(
           <FaStar
             key={i}
-            className="text-transparent border border-yellow-400"
-            style={{ stroke: 'currentColor', strokeWidth: '1' }}
+            className="text-gray-300"
+            style={{
+              stroke: 'currentColor',
+              strokeWidth: 1,
+            }}
           />,
         );
       }
@@ -59,8 +60,8 @@ const ProductCard = ({ product }) => {
   };
 
   return (
-    <div className="cursor-pointer" onClick={viewProductDetail}>
-      <Card className="shadow hover:shadow-lg transition-all relative rounded bg-gray-100">
+    <div className="cursor-pointer h-full" onClick={viewProductDetail}>
+      <Card className="shadow h-full hover:shadow-lg transition-all relative rounded bg-gray-100">
         <CardHeader className="!p-0">
           <Image
             src={

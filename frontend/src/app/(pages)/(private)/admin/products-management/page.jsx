@@ -1,5 +1,6 @@
 'use client';
 import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import {
   Input,
   Button,
@@ -13,12 +14,26 @@ import {
   TableRow,
   Image,
   Skeleton,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
 } from '@nextui-org/react';
-import { getAllProducts } from '@/app/api/products';
+import {
+  getAllProducts,
+  updateProductById,
+  deleteProductById,
+  createProduct,
+} from '@/app/api/client/products';
 import { FaStar } from 'react-icons/fa';
 import { toast } from 'react-toastify';
+import withAuth from '@/app/configs/route';
+import { useDisclosure } from '@nextui-org/react';
 
 const ProductsManagement = () => {
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const [product, setProduct] = useState({});
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [filters, setFilters] = useState({
@@ -28,53 +43,175 @@ const ProductsManagement = () => {
     maxPrice: '',
     rating: '',
   });
+  const [mode, setMode] = useState('');
 
-  const handleViewProduct = id => {
-    alert('view product: ' + id);
-    return;
+  const handleViewProduct = product => {
+    setProduct(product);
+    setMode('view');
+    onOpen();
   };
 
-  const handleEditProduct = id => {
-    alert('edit product: ' + id);
-    return;
+  const handleEditProduct = product => {
+    setProduct(product);
+    setMode('edit');
+    onOpen();
   };
 
-  const handleDeleteProduct = id => {
-    alert('delete product: ' + id);
-    return;
+  const handleDeleteProduct = product => {
+    setProduct(product);
+    setMode('delete');
+    onOpen();
   };
 
   const handleAddProduct = () => {
-    alert('add product');
-    return;
+    setProduct({
+      name: '',
+      capacity: '0ml',
+      price: 0,
+      originalPrice: 0,
+      desc: '',
+      category: '',
+      brand: '',
+      stock: 0,
+      benefit: 0,
+      rating: 0,
+      image: [''],
+    });
+    setMode('add');
+    onOpen();
+  };
+
+  const editProduct = async onClose => {
+    const { _id, createdAt, updatedAt, isDel, ...data } = product;
+    setLoading(true);
+    await updateProductById(_id, data)
+      .then(res => {
+        const updatedProducts = products.map(p => (p._id == res._id ? res : p));
+        setProducts(updatedProducts);
+        toast.success('Edit product successfully', {
+          position: 'top-right',
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'colored',
+        });
+      })
+      .catch(error => {
+        toast.error(error.message, {
+          position: 'top-right',
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'colored',
+        });
+      });
+    setLoading(false);
+    onClose();
+  };
+
+  const addProduct = async onClose => {
+    const data = product;
+    setLoading(true);
+    await createProduct(data)
+      .then(res => {
+        const updatedProducts = { ...products, res };
+        setProducts(updatedProducts);
+        toast.success('Add product successfully', {
+          position: 'top-right',
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'colored',
+        });
+      })
+      .catch(error => {
+        toast.error(error.message, {
+          position: 'top-right',
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'colored',
+        });
+      });
+    setLoading(false);
+    onClose();
+  };
+
+  const deleteProduct = async onClose => {
+    setLoading(true);
+    await deleteProductById(product._id)
+      .then(res => {
+        const updatedProducts = products.filter(p => p._id !== res._id);
+        setProducts(updatedProducts);
+        toast.success('Delete product successfully', {
+          position: 'top-right',
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'colored',
+        });
+      })
+      .catch(error => {
+        toast.error(error.message, {
+          position: 'top-right',
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'colored',
+        });
+      });
+    setLoading(false);
+    onClose();
   };
 
   const renderStars = rating => {
     const stars = [];
-    const fullStars = Math.floor(rating);
-    const hasHalfStar = rating % 1 !== 0;
+    const fullStars = Math.floor(rating); // Số sao đầy
+    const hasHalfStar = rating % 1 !== 0; // Kiểm tra có sao rưỡi hay không
 
     for (let i = 1; i <= 5; i++) {
       if (i <= fullStars) {
+        // Sao đầy
         stars.push(<FaStar key={i} className="text-yellow-400" />);
       } else if (i === fullStars + 1 && hasHalfStar) {
+        // Sao rưỡi
         stars.push(
           <FaStar
             key={i}
             className="text-yellow-400"
             style={{
-              clipPath: 'inset(0 50% 0 0)',
-              stroke: 'currentColor',
-              strokeWidth: '1',
+              clipPath: 'polygon(0 0, 50% 0, 50% 100%, 0 100%)',
             }}
           />,
         );
       } else {
+        // Sao rỗng (viền vàng)
         stars.push(
           <FaStar
             key={i}
-            className="text-transparent border border-yellow-400"
-            style={{ stroke: 'currentColor', strokeWidth: '1' }}
+            className="text-gray-300"
+            style={{
+              stroke: 'currentColor',
+              strokeWidth: 1,
+            }}
           />,
         );
       }
@@ -87,7 +224,7 @@ const ProductsManagement = () => {
     setLoading(true);
     await getAllProducts(filterData)
       .then(res => {
-        setProducts(res);
+        setProducts(res.results);
       })
       .catch(error => {
         setProducts([]);
@@ -125,8 +262,12 @@ const ProductsManagement = () => {
       }
       setFilters(prev => ({ ...prev, maxPrice: Number(value) }));
     } else {
-      setFilters(prev => ({ ...prev, [name]: value }));
     }
+  };
+
+  const handleChangeProduct = e => {
+    const { name, value } = e.target;
+    setProduct(prev => ({ ...prev, [name]: value }));
   };
 
   const applyFilters = () => fetchProducts(filters);
@@ -205,7 +346,7 @@ const ProductsManagement = () => {
       </div>
 
       {/* Products Table */}
-      {loading || products.length > 0 ? (
+      {(loading && mode === '') || products.length > 0 ? (
         <Table
           aria-label="Product Table"
           css={{ height: 'auto', minWidth: '100%' }}
@@ -235,7 +376,7 @@ const ProductsManagement = () => {
                 products.map((product, index) => (
                   <TableRow key={index}>
                     <TableCell>
-                      <div className="flex flex-row items-center space-x-2">
+                      <div className="grid grid-cols-2 items-center">
                         <Image
                           src={
                             product.images && product.images.length > 0
@@ -263,13 +404,13 @@ const ProductsManagement = () => {
                     <TableCell>
                       <div className="flex flex-row space-x-2 justify-center">
                         <Button
-                          onClick={() => handleViewProduct(product._id)}
+                          onClick={() => handleViewProduct(product)}
                           size="sm"
                         >
                           View
                         </Button>
                         <Button
-                          onClick={() => handleEditProduct(product._id)}
+                          onClick={() => handleEditProduct(product)}
                           size="sm"
                           color="success"
                           className="text-white"
@@ -277,7 +418,7 @@ const ProductsManagement = () => {
                           Edit
                         </Button>
                         <Button
-                          onClick={() => handleDeleteProduct(product._id)}
+                          onClick={() => handleDeleteProduct(product)}
                           size="sm"
                           color="danger"
                         >
@@ -297,8 +438,193 @@ const ProductsManagement = () => {
           Add new product
         </Button>
       </div>
+
+      {product && mode !== 'delete' && (
+        <Modal isOpen={isOpen} onOpenChange={onOpenChange} size="2xl">
+          <ModalContent>
+            {onClose => (
+              <>
+                <ModalHeader className="flex flex-col gap-1 text-center">
+                  {mode == 'edit'
+                    ? 'Update Product'
+                    : mode == 'view'
+                    ? 'View Product'
+                    : 'Add Product'}
+                </ModalHeader>
+                <ModalBody className="max-h-[500px] overflow-y-auto">
+                  <div className="flex flex-col space-y-4">
+                    <div className="flex flex-row items-center space-x-2 justify-between">
+                      <div className="font-semibold w-1/3">Product name:</div>
+                      <Input
+                        onChange={handleChangeProduct}
+                        disabled={mode === 'view'}
+                        name="name"
+                        value={product.name}
+                      />
+                    </div>
+                    <div className="flex flex-row items-center space-x-2 justify-between">
+                      <div className="font-semibold w-1/3">Capacity:</div>
+                      <Input
+                        onChange={handleChangeProduct}
+                        disabled={mode === 'view'}
+                        name="capacity"
+                        value={product.capacity}
+                      />
+                    </div>
+                    <div className="flex flex-row items-center space-x-2 justify-between">
+                      <div className="font-semibold w-1/3">Price:</div>
+                      <Input
+                        onChange={handleChangeProduct}
+                        disabled={mode === 'view'}
+                        type="number"
+                        name="price"
+                        value={product.price}
+                      />
+                    </div>
+                    <div className="flex flex-row items-center space-x-2 justify-between">
+                      <div className="font-semibold w-1/3">Original price:</div>
+                      <Input
+                        onChange={handleChangeProduct}
+                        disabled={mode === 'view'}
+                        type="number"
+                        name="originalPrice"
+                        value={product.originalPrice}
+                      />
+                    </div>
+                    <div className="flex flex-row items-center space-x-2 justify-between">
+                      <div className="font-semibold w-1/3">Description:</div>
+                      <Input
+                        onChange={handleChangeProduct}
+                        disabled={mode === 'view'}
+                        name="desc"
+                        value={product.desc}
+                      />
+                    </div>
+                    <div className="flex flex-row items-center space-x-2 justify-between">
+                      <div className="font-semibold w-1/3">Category:</div>
+                      <Input
+                        onChange={handleChangeProduct}
+                        disabled={mode === 'view'}
+                        name="category"
+                        value={product.category}
+                      />
+                    </div>
+                    <div className="flex flex-row items-center space-x-2 justify-between">
+                      <div className="font-semibold w-1/3">Brand:</div>
+                      <Input
+                        onChange={handleChangeProduct}
+                        disabled={mode === 'view'}
+                        name="brand"
+                        value={product.brand}
+                      />
+                    </div>
+                    <div className="flex flex-row items-center space-x-2 justify-between">
+                      <div className="font-semibold w-1/3">Stock:</div>
+                      <Input
+                        onChange={handleChangeProduct}
+                        disabled={mode === 'view'}
+                        type="number"
+                        name="stock"
+                        value={product.stock}
+                      />
+                    </div>
+                    <div className="flex flex-row items-center space-x-2 justify-between">
+                      <div className="font-semibold w-1/3">Benefit:</div>
+                      <Input
+                        onChange={handleChangeProduct}
+                        disabled={mode === 'view'}
+                        name="benefit"
+                        value={product.benefit}
+                      />
+                    </div>
+                    <div className="flex flex-row items-center space-x-2 justify-between">
+                      <div className="font-semibold w-1/3">Rating:</div>
+                      <Input
+                        onChange={handleChangeProduct}
+                        disabled={true}
+                        type="number"
+                        max="5"
+                        min="1"
+                        name="rating"
+                        value={product.rating}
+                      />
+                    </div>
+                    <div className="flex flex-row items-center space-x-2 justify-between">
+                      <div className="font-semibold w-1/3">Image:</div>
+                      <Image
+                        src={
+                          product.images && product.images.length > 0
+                            ? product.images[0]
+                            : 'https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-website-design-mobile-app-no-photo-available_87543-11093.jpg'
+                        }
+                        alt={product.name}
+                        className="object-cover rounded-xl"
+                      />
+                    </div>
+                  </div>
+                </ModalBody>
+                <ModalFooter>
+                  <Button color="danger" variant="light" onPress={onClose}>
+                    Close
+                  </Button>
+                  {mode === 'edit' ? (
+                    <Button
+                      isLoading={loading && mode === 'edit'}
+                      color="primary"
+                      onPress={() => editProduct(onClose)}
+                    >
+                      Update
+                    </Button>
+                  ) : (
+                    mode === 'add' && (
+                      <Button
+                        isLoading={loading && mode === 'add'}
+                        color="primary"
+                        onPress={() => addProduct(onClose)}
+                      >
+                        Add
+                      </Button>
+                    )
+                  )}
+                </ModalFooter>
+              </>
+            )}
+          </ModalContent>
+        </Modal>
+      )}
+
+      {product && mode === 'delete' && (
+        <Modal isOpen={isOpen} onOpenChange={onOpenChange} size="2xl">
+          <ModalContent>
+            {onClose => (
+              <>
+                <ModalHeader className="flex flex-col gap-1 text-center">
+                  Delete Product
+                </ModalHeader>
+                <ModalBody className="max-h-[500px] overflow-y-auto">
+                  <div className="flex flex-col space-y-4">
+                    Do you want delete this product ?
+                  </div>
+                </ModalBody>
+                <ModalFooter>
+                  <Button color="danger" variant="light" onPress={onClose}>
+                    Close
+                  </Button>
+                  <Button
+                    isLoading={loading && mode === 'delete'}
+                    color="danger"
+                    onPress={() => deleteProduct(onClose)}
+                  >
+                    Delete
+                  </Button>
+                </ModalFooter>
+              </>
+            )}
+          </ModalContent>
+        </Modal>
+      )}
     </div>
   );
 };
 
-export default ProductsManagement;
+export default withAuth(ProductsManagement, ['admin']);

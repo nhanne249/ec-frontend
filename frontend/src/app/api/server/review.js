@@ -1,4 +1,4 @@
-import { methods } from "@/app/configs/axiosConfigs/methods";
+import { methods } from "@/app/configs/axiosConfigs/methods.server";
 
 const url = "/reviews"
 export const createReview = (data) => {
