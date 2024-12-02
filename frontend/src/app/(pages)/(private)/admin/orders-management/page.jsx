@@ -193,7 +193,7 @@ const OrderManagement = () => {
           Add new order
         </Button>
       </div>
-      {/* TODO: Modal for view order */}
+
       {order && mode !== "delete" && (
         <Modal
           isOpen={isOpen}
@@ -227,6 +227,7 @@ const OrderManagement = () => {
                       <div className="font-semibold w-1/3">Status</div>
                       <Select
                         value={order.status}
+                        selectedKeys={[order.status]}
                         isDisabled={mode === "view"}
                         onChange={handleChangeOrder}
                         name="status"
@@ -267,6 +268,7 @@ const OrderManagement = () => {
                         </div>
                         <Select
                           value={order.paymentStatus}
+                          selectedKeys={[order.paymentStatus]}
                           isDisabled={mode === "view"}
                           onChange={handleChangeOrder}
                           name="paymentStatus"
