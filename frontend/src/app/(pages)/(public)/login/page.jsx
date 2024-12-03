@@ -1,13 +1,15 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { hasCookie, setCookie, getCookie } from "cookies-next";
 import { Input } from "@nextui-org/react";
 import { login } from "@/app/api/client/auth";
 import { toast } from "react-toastify";
+import { MyContext } from "@/app/utils/Context";
 import "./styles.scss";
 export default function Login() {
   const router = useRouter();
+  const { setRole } = useContext(MyContext);
 
   const [formData, setFormData] = useState({
     username: "",
@@ -40,9 +42,9 @@ export default function Login() {
           progress: undefined,
           theme: "colored",
         });
-        console.log(res.user.role);
         setCookie("token", res.accessToken, { path: "/", maxAge: 604800 });
         setCookie("role", res.user.role, { path: "/", maxAge: 604800 });
+        setRole(res.user.role);
         router.push("/");
       } else
         toast.error("Đăng nhập thất bại!", {

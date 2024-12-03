@@ -6,6 +6,8 @@ import { hasCookie,getCookie } from 'cookies-next';
 export const MyContext = createContext();
 
 export const CartProvider = ({ children }) => {
+
+  const [role, setRole] = useState(hasCookie('role')? getCookie('role'):'guest')
   const [cartNoti, setCartNoti] = useState(localStorage.getItem("cart")
       ? JSON.parse(localStorage.getItem("cart")).reduce((sum, item) => {
           return sum + (item.quantity || 0);
@@ -14,6 +16,7 @@ export const CartProvider = ({ children }) => {
   const [cartClient, setCartClient] = useState(localStorage.getItem("cart")
       ? JSON.parse(localStorage.getItem("cart")):[]);
   const [cartServer, setCartServer] = useState([]);
+
   useEffect(() => {
     if (hasCookie('token') && getCookie('role')== 'customer') {
       getCartServerData().then(res => console.log(res))
@@ -24,7 +27,7 @@ export const CartProvider = ({ children }) => {
   },[])
 
   return (
-    <MyContext.Provider value={{ cartNoti, setCartNoti }}>
+    <MyContext.Provider value={{ cartNoti, setCartNoti,role,setRole }}>
       {children}
     </MyContext.Provider>
   );

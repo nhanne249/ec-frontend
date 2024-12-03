@@ -1,7 +1,7 @@
 import React from "react";
 import { getProductById } from "@/app/api/server/products";
 import { Button, Divider, Image } from "@nextui-org/react";
-import AddToCartBtn from "./button";
+import AddToCartBtn from "@/app/utils/components/AddToCartBtn";
 
 const StarRating = ({ rate }) => {
   return (
