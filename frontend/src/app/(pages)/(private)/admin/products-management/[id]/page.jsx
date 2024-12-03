@@ -1,10 +1,10 @@
-'use client'; // Đánh dấu đây là một Client Component
-import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { getProductById } from '@/app/api/client/products'; // Đảm bảo đường dẫn này đúng
-import { Input, Button, Card, CardFooter } from '@nextui-org/react';
-import withAuth from '@/app/configs/route';
-import { toast } from 'react-toastify';
+"use client"; // Đánh dấu đây là một Client Component
+import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { getProductById } from "@/app/api/client/products"; // Đảm bảo đường dẫn này đúng
+import { Input, Button, Card, CardFooter } from "@nextui-org/react";
+import withAuth from "@/app/configs/route";
+import { toast } from "react-toastify";
 
 const ProductPage = ({ params }) => {
   const id = { params };
@@ -13,8 +13,7 @@ const ProductPage = ({ params }) => {
   useEffect(() => {
     const fetchProduct = async () => {
       if (id) {
-        await getProductById(id).then(res => {
-          console.log(res);
+        await getProductById(id).then((res) => {
           setProduct(res.product);
         });
       }
@@ -64,4 +63,4 @@ const ProductPage = ({ params }) => {
   );
 };
 
-export default withAuth(ProductPage, ['admin']); // Bảo vệ trang nếu cần
+export default withAuth(ProductPage, ["admin"]); // Bảo vệ trang nếu cần
