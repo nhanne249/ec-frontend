@@ -30,7 +30,9 @@ export const CartProvider = ({ children }) => {
     else if(cartClient!=[]){
       getCartDataNoLogin({items:cartClient}).then((res)=>setCartServer(res.items.reverse()))
     }
-  },[needFetch])
+    }, [needFetch])
+  useEffect(()=>{setCartClient(localStorage.getItem("cart")
+      ? JSON.parse(localStorage.getItem("cart")):[]);},[cartNoti])
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cartClient));
 

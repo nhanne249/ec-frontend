@@ -53,10 +53,8 @@ export default function RootLayout({ children }) {
               </div>
             </div>
           </div>
-          <div className="w-full flex-grow pt-14 bg-slate-100">
-            <CartProvider>
+          <div className="w-full min-h-screen flex-grow pt-14 bg-slate-100">
               {children}
-            </CartProvider>
           </div>
           <div className="h-auto bg-sky-800 grid md:grid-rows-2 md:grid-cols-1 lg:grid-cols-2 lg:grid-rows-1 place-items-center py-3">
             <div className="flex flex-col">

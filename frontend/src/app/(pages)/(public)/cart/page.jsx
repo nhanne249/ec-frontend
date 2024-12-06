@@ -81,6 +81,19 @@ const Cart = () => {
     }
   };
 
+  const handleDeleteProductFromCart = ({ id }) => {
+    setCartClient((prevCart) => {
+      return prevCart
+        .map((item) => {
+          if (item.productId == id) {
+            return null;
+          }
+          return item;
+        })
+        .filter(Boolean);
+    });
+  };
+
   return cartServer.length != 0 ? (
     <div className="w-full h-full px-10 py-5 grid grid-cols-5 grid-rows-1 gap-4">
       <div className="col-span-4 flex flex-col border rounded-lg py-5 h-fit bg-white">
@@ -110,7 +123,7 @@ const Cart = () => {
               </div>
               <div
                 className="col-span-2 h-fit col-start-9 text-base cursor-pointer underline text-red-600 self-center"
-                onClick={() => handleDeleteBookFromCart({ id: item._id })}
+                onClick={() => handleDeleteProductFromCart({ id: item._id })}
               >
                 Delete this product!
               </div>

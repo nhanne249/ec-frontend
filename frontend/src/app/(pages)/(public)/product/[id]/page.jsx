@@ -1,22 +1,20 @@
-"use client";
-import { use, useEffect, useState } from "react";
-import { getProductById } from "@/app/api/client/products";
-import { Divider, Image } from "@nextui-org/react";
+import { getProductById } from "@/app/api/server/products";
+import { Image } from "@nextui-org/image";
 import AddToCartBtn from "@/app/utils/components/AddToCartBtn";
 
-// export async function generateMetadata({ params }) {
-//   const { id } = use(params);
-//   const product = await getProductById(id).then((response) => {
-//     return response.product;
-//   });
+export async function generateMetadata({ params }) {
+  const { id } = await params;
+  const product = await getProductById(id).then((response) => {
+    return response.product;
+  });
 
-//   return {
-//     title: product.name,
-//     openGraph: {
-//       images: [product.images[0]],
-//     },
-//   };
-// }
+  return {
+    title: product.name,
+    openGraph: {
+      images: [product.images[0]],
+    },
+  };
+}
 
 const StarRating = ({ rate }) => {
   return (
@@ -56,15 +54,11 @@ const StarRating = ({ rate }) => {
   );
 };
 
-const ProductPage = ({ params }) => {
-  const { id } = use(params);
-  const [product, setProduct] = useState();
-  useEffect(() => {
-    getProductById(id).then((response) => {
-      setProduct(response.product);
-    });
-  }, []);
-
+const ProductPage = async ({ params }) => {
+  const { id } = await params;
+  const product = await getProductById(id).then((response) => {
+    return response.product;
+  });
   return (
     product && (
       <div className="container mx-auto mt-6">
@@ -80,7 +74,6 @@ const ProductPage = ({ params }) => {
 
             {/* TODO: Handle button click events */}
             <AddToCartBtn id={id} />
-            <Divider className="my-5" />
             <div className="flex flex-col space-y-2 text-gray-500">
               {/* TODO: Change this with data from API */}
               {[
@@ -98,11 +91,6 @@ const ProductPage = ({ params }) => {
             </div>
           </div>
         </div>
-        {/* <Divider className="absolute left-0 w-screen" />
-      <div className="flex flex-col items-center gap-6 py-10">
-        <div className="font-medium text-[2.25rem]">Related Products</div>
-        <div className="flex justify-around gap-6"></div>
-      </div> */}
       </div>
     )
   );
