@@ -22,7 +22,7 @@ export default async function Home() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {featuredProducts.map((product) => (
             <Card 
-              key={product.id} 
+              key={product._id} 
               className="hover:shadow-lg transition-all duration-300"
               isPressable
             >
@@ -34,8 +34,7 @@ export default async function Home() {
                 <Image
                   alt={product.name}
                   className="object-cover rounded-xl"
-                  src={product.image}
-                  width={270}
+                  src={product.images[0]}
                 />
                   <p className="font-semibold text-lg text-blue-600">${product.price}</p>
               </CardBody>
