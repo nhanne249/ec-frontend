@@ -1,10 +1,12 @@
 "use client";
 import { deleteCookie } from "cookies-next";
+import { redirect } from "next/navigation";
 
 const LogoutBtn = () => {
   const handleClickLogoutBtn = () => {
     deleteCookie("role");
     deleteCookie("token");
+    redirect("/");
   };
   return (
     <button
