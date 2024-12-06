@@ -1,7 +1,20 @@
-import React from "react";
 import { getProductById } from "@/app/api/server/products";
 import { Button, Divider, Image } from "@nextui-org/react";
 import AddToCartBtn from "@/app/utils/components/AddToCartBtn";
+
+export async function generateMetadata({ params }) {
+  const { id } = await params;
+  const product = await getProductById(id).then((response) => {
+    return response.product;
+  });
+
+  return {
+    title: product.name,
+    openGraph: {
+      images: [product.images[0]],
+    },
+  };
+}
 
 const StarRating = ({ rate }) => {
   return (

@@ -20,7 +20,6 @@ export const CartProvider = ({ children }) => {
     useEffect(() => {
     if (hasCookie('token') && getCookie('role')== 'customer' && cartClient.length ===0 ) {
       getCartServerData().catch(res => {
-        console.log(res)
         if(!res.response.data.error)
         setCartServer(res.response.data.items.reverse())
       })

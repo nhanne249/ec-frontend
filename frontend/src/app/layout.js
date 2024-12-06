@@ -10,7 +10,7 @@ import CartBtn from './utils/components/CartBtn';
 import UserBtn from './utils/components/UserBtn';
 
 export const metadata = {
-  title: 'EC',
+  title: '8GROUP',
   description: 'Create by Group 8',
 };
 

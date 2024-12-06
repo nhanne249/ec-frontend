@@ -2,10 +2,6 @@
 
 import React from 'react';
 import { 
-  Navbar, 
-  NavbarBrand, 
-  NavbarContent, 
-  NavbarItem, 
   Button, 
   Card, 
   CardBody, 

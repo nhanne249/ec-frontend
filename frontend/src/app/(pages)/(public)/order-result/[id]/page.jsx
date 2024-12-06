@@ -1,6 +1,6 @@
 "use client";
 
-import { use, useEffect } from "react";
+import { use } from "react";
 import successImg from "../../../../assets/img/success.png";
 import cancelImg from "../../../../assets/img/cancel.png";
 import Image from "next/image";
