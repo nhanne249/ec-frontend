@@ -56,7 +56,6 @@ export const getAllProducts = (data = '') => {
   if (data?.benefit && data?.benefit != '') {
     postfix += (postfix.length > 1 ? '&benefit=' : '?benefit=') + data.benefit;
   }
-  console.log(`${url}${postfix}`);
   return methods.get(`${url}${postfix}`);
 };
 

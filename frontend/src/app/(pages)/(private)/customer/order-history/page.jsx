@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import withAuth from "@/app/configs/route";
 import {
   Button,
@@ -41,8 +41,6 @@ const formatDate = (dateString) => {
 };
 
 const OrderHistory = () => {
-  // Fetch orders
-
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [orders, setOrders] = useState();
   const [order, setOrder] = useState({});
