@@ -65,14 +65,30 @@ export default async function RootLayout({ children }) {
             </div>
           </div>
         </div>
-        <div className="w-full flex-grow pt-14 bg-slate-100">
+        <div className="w-full min-h-screen flex-grow pt-14 bg-slate-100">
             {children}
         </div>
-        <div className="w-full h-10 bg-sky-800 text-white text-base">
-          Footer
-        </div>
-        <ToastContainer />
-          </CartProvider>
+        <div className="h-auto bg-sky-800 grid md:grid-rows-2 md:grid-cols-1 lg:grid-cols-2 lg:grid-rows-1 place-items-center">
+          <div className="flex flex-col">
+            <div className="flex flex-row gap-5">
+              <div className="text-lg font-medium text-slate-300">Address:</div>
+              <div className="text-lg font-medium text-white">Đông Hoà, Thành Phố Thủ Đức, Bình Dương, Vietnam</div>
+            </div>
+            <div className="flex flex-row gap-5">
+              <div className="text-lg font-medium text-slate-300">Phone:</div>
+              <div className="text-lg font-medium text-white">0123456789</div>
+            </div>
+            <div className="flex flex-row gap-5">
+              <div className="text-lg font-medium text-slate-300">Email:</div>
+              <div className="text-lg font-medium text-white">fakemail@gmail.com</div>
+            </div>
+          </div>
+          <div className="w-full h-full flex justify-center items-center">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d979.5241858212606!2d106.8049488!3d10.8802461!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174d9d593f6d039%3A0x2a6b2fed68835b3a!2zVG_DoCBCSy5CMyAtIMSQ4bqhaSBo4buNYyBCw6FjaCBLaG9hIFRQLiBI4buTIENow60gTWluaCBjxqEgc-G7nyAy!5e0!3m2!1sen!2s!4v1733495986797!5m2!1sen!2s" width="600" height="400" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+      </div>
+      <ToastContainer />
+      </CartProvider>
       </body>
     </html>
   );
