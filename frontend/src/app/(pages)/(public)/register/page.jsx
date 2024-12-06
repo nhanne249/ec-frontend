@@ -11,13 +11,14 @@ const Register = () => {
   const router = useRouter();
 
   const handleSubmit = (e) => {
+    console.log(e);
     e.preventDefault();
     const dataSend = {
       name: e.target[0].value,
-      username: e.target[1].value,
-      phone: e.target[2].value,
-      email: e.target[3].value,
-      password: e.target[4].value,
+      username: e.target[2].value,
+      phone: e.target[4].value,
+      email: e.target[5].value,
+      password: e.target[8].value,
     };
     register(dataSend).then((res) => {
       if (!res.error) {

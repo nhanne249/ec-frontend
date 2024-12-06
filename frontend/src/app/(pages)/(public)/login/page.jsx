@@ -28,7 +28,7 @@ export default function Login() {
     e.preventDefault();
     const dataSend = {
       username: e.target[0].value,
-      password: e.target[1].value,
+      password: e.target[2].value,
     };
     login(dataSend).then((res) => {
       if (res.accessToken) {
