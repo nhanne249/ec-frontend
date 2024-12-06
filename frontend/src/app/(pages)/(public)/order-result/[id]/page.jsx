@@ -9,9 +9,9 @@ const OrderResult = ({ params, searchParams }) => {
   const { id } = use(params);
   const { cancel } = use(searchParams);
 
-  useEffect(() => {
+  if (typeof window !== 'undefined') {
     localStorage.removeItem("cart");
-  }, [])
+  }
 
 
   return (
