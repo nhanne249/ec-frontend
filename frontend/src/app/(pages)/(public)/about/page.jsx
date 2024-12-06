@@ -1,5 +1,6 @@
+"use client";
 import React from "react";
-import { Card, CardBody, Button, Image } from "@nextui-org/react";
+import { Card, CardBody, Image } from "@nextui-org/react";
 import { Leaf, Star, Heart } from "lucide-react";
 
 const About = () => {
