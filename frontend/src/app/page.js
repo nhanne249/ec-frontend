@@ -36,7 +36,7 @@ export default async function Home() {
                   className="object-cover rounded-xl"
                   src={product.images[0]}
                 />
-                  <p className="font-semibold text-lg text-blue-600">${product.price}</p>
+                  <p className="font-semibold text-lg text-blue-600">{String(product.price).replace(/\B(?=(\d{3})+(?!\d))/g, ".") + " VND"}</p>
               </CardBody>
             </Card>
           ))}

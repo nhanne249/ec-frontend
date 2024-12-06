@@ -68,7 +68,7 @@ const ProductPage = async ({ params }) => {
         </div>
         <div className="col-span-2 col-start-4 flex flex-col gap-4">
           <div className="font-semibold text-[2.625rem]">{product.name}</div>
-          <div className="font-medium text-[1.5rem] text-[#9F9F9F]">${product.price}</div>
+          <div className="font-medium text-[1.5rem] text-[#9F9F9F]">{String(product.price).replace(/\B(?=(\d{3})+(?!\d))/g, ".") + " VND"}</div>
           <StarRating rate={product.rating} />
           <div>{product.desc}</div>
 
