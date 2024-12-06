@@ -33,9 +33,14 @@ const formatCurrency = (value, locale = "vi-VN", currency = "VND") => {
 };
 
 const OrderHistory = () => {
-  // TODO: API for getting orders of a specific customer?
+  // Fetch orders
   const [orders, setOrders] = useState();
   useEffect(() => {
+    getAllOrders()
+      .then((response) => setOrders(response.results))
+      .catch((error) => {
+        console.error("Error fetching product data: ", error);
+      });
   }, []);
   const sampleOrders = [
     {
@@ -201,7 +206,7 @@ const OrderHistory = () => {
         </TableHeader>
         <TableBody>
           {/* TODO: Change sampleOrders to orders from API */}
-          {sampleOrders.map((order, index) => (
+          {orders?.map((order, index) => (
             <TableRow key={index}>
               <TableCell className="flex gap-2 items-center">
                 <div>
