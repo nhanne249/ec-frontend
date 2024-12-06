@@ -9,3 +9,7 @@ export const createCartData = (data) => {
 export const getCartServerData = () => {
   return methods.get(`${url}`);
 }
+
+export const getCartDataNoLogin = (data) => {
+  return methods.post(`${url}/details`, JSON.stringify(data));
+}

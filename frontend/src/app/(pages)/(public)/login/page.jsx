@@ -42,8 +42,8 @@ export default function Login() {
           progress: undefined,
           theme: "colored",
         });
-        setCookie("token", res.accessToken, { path: "/", maxAge: 604800 });
-        setCookie("role", res.user.role, { path: "/", maxAge: 604800 });
+        setCookie("token", res.accessToken);
+        setCookie("role", res.user.role);
         setRole(res.user.role);
         router.push("/");
       } else
