@@ -67,7 +67,7 @@ export default async function RootLayout({ children }) {
             </div>
           </div>
         </div>
-        <div className="w-full flex-grow bg-slate-100">
+        <div className="w-full flex-grow pt-14 bg-slate-100">
             {children}
         </div>
         <div className="w-full h-10 bg-sky-800 text-white text-base">
