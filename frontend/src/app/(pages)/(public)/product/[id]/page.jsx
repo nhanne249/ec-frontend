@@ -92,22 +92,11 @@ const ProductPage = async ({ params }) => {
           </div>
         </div>
       </div>
-      <Divider className="absolute left-0 w-screen" />
-      <div className="flex flex-col items-center py-10">
-        <div className="flex justify-around text-[1.5rem] font-medium gap-10 mb-10">
-          <div>Description</div>
-          <div>Additional Information</div>
-          <div>Reviews</div>
-        </div>
-      </div>
-      <Divider className="absolute left-0 w-screen" />
+      {/* <Divider className="absolute left-0 w-screen" />
       <div className="flex flex-col items-center gap-6 py-10">
         <div className="font-medium text-[2.25rem]">Related Products</div>
         <div className="flex justify-around gap-6"></div>
-        <Button variant="bordered" color="warning">
-          Show more
-        </Button>
-      </div>
+      </div> */}
     </div>
   );
 };
