@@ -82,12 +82,12 @@ export default async function RootLayout({ children }) {
               </div>
             </div>
             <div className="w-full h-full flex justify-center items-center">
-              {/* <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d979.5241858212606!2d106.8049488!3d10.8802461!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174d9d593f6d039%3A0x2a6b2fed68835b3a!2zVG_DoCBCSy5CMyAtIMSQ4bqhaSBo4buNYyBCw6FjaCBLaG9hIFRQLiBI4buTIENow60gTWluaCBjxqEgc-G7nyAy!5e0!3m2!1sen!2s!4v1733497461186!5m2!1sen!2s"
+              <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d979.5241858212606!2d106.8049488!3d10.8802461!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174d9d593f6d039%3A0x2a6b2fed68835b3a!2zVG_DoCBCSy5CMyAtIMSQ4bqhaSBo4buNYyBCw6FjaCBLaG9hIFRQLiBI4buTIENow60gTWluaCBjxqEgc-G7nyAy!5e0!3m2!1sen!2s!4v1733497461186!5m2!1sen!2s"
                 width="400"
                 height="200"
                 referrerPolicy="no-referrer-when-downgrade"
                 loading="lazy"
-              ></iframe> */}
+              ></iframe>
             </div>
           </div>
           <ToastContainer />
