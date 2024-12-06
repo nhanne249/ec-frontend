@@ -1,8 +1,4 @@
 {
-  "extends": ["next", "next/core-web-vitals"],
-  "rules": {
-    "react/no-unescaped-entities": "off",
-    "react/jsx-props-no-spreading": "off"
-  },
-  "ignorePatterns": ["node_modules/", "build/"]
+  "presets": ["next/babel"],
+  "extends": ["next", "next/core-web-vitals"]
 }
