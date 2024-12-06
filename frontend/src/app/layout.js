@@ -15,6 +15,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className= "h-screen w-screen min-h-screen flex flex-col">
+            <CartProvider>
           <div className="w-full lg:min-h-16 min-h-48 h-48 lg:h-16 px-5 lg:fixed top-0 left-0 lg:z-50 bg-white shadow-md">
             <div className="w-full grid h-full md:grid-rows-3 md:grid-cols-1 lg:grid-cols-3 lg:grid-rows-1">
               <Link
@@ -47,10 +48,8 @@ export default function RootLayout({ children }) {
                 </div>
               </div>
               <div className="w-1/2 h-full flex flex-grow justify-between items-center lg:place-self-end place-self-center">
-            <CartProvider>
                 <UserBtn />
                 <CartBtn/>
-            </CartProvider>
               </div>
             </div>
           </div>
@@ -83,6 +82,7 @@ export default function RootLayout({ children }) {
               ></iframe>
             </div>
           </div>
+            </CartProvider>
           <ToastContainer />
       </body>
     </html>
