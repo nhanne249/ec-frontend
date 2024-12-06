@@ -1,6 +1,6 @@
 "use client";
 
-import { use } from "react";
+import { use, useEffect } from "react";
 import successImg from "../../../../assets/img/success.png";
 import cancelImg from "../../../../assets/img/cancel.png";
 import Image from "next/image";
@@ -9,7 +9,10 @@ const OrderResult = ({ params, searchParams }) => {
   const { id } = use(params);
   const { cancel } = use(searchParams);
 
-  localStorage.removeItem("cart");
+  if (typeof window !== 'undefined') {
+    localStorage.removeItem("cart");
+  }
+
 
   return (
     <div className="w-full h-full flex flex-col items-center justify-center gap-5">
