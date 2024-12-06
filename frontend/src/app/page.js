@@ -1,5 +1,6 @@
-import {Card,CardBody, CardHeader, Image} from "@nextui-org/react";
-import { getAllProducts } from "@/app/api/server/products";
+'use client'
+import { Card, CardBody, CardHeader, Image } from "@nextui-org/react";
+import { getAllProducts } from "@/app/api/client/products";
 import NavigateBtn from "./utils/components/NavigateBtn";
 
 export default async function Home() {
