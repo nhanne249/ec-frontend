@@ -53,7 +53,7 @@ export default async function RootLayout({ children }) {
                 </Link>
               </div>
               <div className="w-1/4 text-center group h-full !text-black relative font-semibold after:absolute after:h-0 after:w-0 after:bg-sky-800 after:left-1/2 overflow-hidden after:bottom-0 after:hover:h-1 after:hover:w-1 after:translate-x-full after:hover:scale-x-[300] after:hover:transition-all after:hover:duration-500 after:transition-all after:duration-500 transition-all duration-500 text-2xl">
-                <Link href="/" className="w-full h-full block content-center">
+                <Link href="/contact" className="w-full h-full block content-center">
                   Contact
                 </Link>
               </div>
@@ -67,7 +67,7 @@ export default async function RootLayout({ children }) {
             </div>
           </div>
         </div>
-        <div className="w-full flex-grow pt-16 bg-slate-100">
+        <div className="w-full flex-grow pt-14 bg-slate-100">
             {children}
         </div>
         <div className="w-full h-10 bg-sky-800 text-white text-base">
