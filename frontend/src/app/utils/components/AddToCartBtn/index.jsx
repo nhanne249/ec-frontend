@@ -10,14 +10,14 @@ const AddToCartBtn = ({ id }) => {
     <Button
       className="bg-sky-800 text-white text-xl font-bold w-40"
       onClick={() => {
-        let cart = typeof window !== 'undefined' && JSON.parse(localStorage.getItem("cart")) || [];
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
         const productIndex = cart.findIndex((item) => item.productId === id);
         if (productIndex !== -1) {
           cart[productIndex].quantity += 1;
         } else {
           cart.push({ productId: id, quantity: 1 });
         }
-        typeof window !== 'undefined' && localStorage.setItem("cart", JSON.stringify(cart));
+        localStorage.setItem("cart", JSON.stringify(cart));
         setCartNoti(cartNoti + 1);
       }}
     >

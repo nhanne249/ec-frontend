@@ -8,12 +8,12 @@ export const MyContext = createContext();
 export const CartProvider = ({ children }) => {
 
   const [role, setRole] = useState(hasCookie('role')? getCookie('role'):'guest')
-  const [cartNoti, setCartNoti] = useState(typeof window !== 'undefined' && localStorage.getItem("cart")
+  const [cartNoti, setCartNoti] = useState(localStorage.getItem("cart")
       ? JSON.parse(localStorage.getItem("cart")).reduce((sum, item) => {
           return sum + (item.quantity || 0);
         }, 0)
       : 0);
-  const [cartClient, setCartClient] = useState(typeof window !== 'undefined' && localStorage.getItem("cart")
+  const [cartClient, setCartClient] = useState(localStorage.getItem("cart")
       ? JSON.parse(localStorage.getItem("cart")):[]);
   const [cartServer, setCartServer] = useState([]);
   const [needFetch, setNeedFetch] = useState(false);
@@ -25,7 +25,6 @@ export const CartProvider = ({ children }) => {
       })
     }
     else if (hasCookie('token') && getCookie('role') == 'customer' && cartClient.length > 0) {
-      console.log('here')
       createCartData({items:cartClient}).then((res)=>setCartServer(res.productsInfo.items.reverse()))
     }
     else if(cartClient!=[]){
