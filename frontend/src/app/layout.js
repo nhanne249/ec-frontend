@@ -1,4 +1,4 @@
-import { FiUser, FiSearch } from 'react-icons/fi';
+import { FiSearch } from 'react-icons/fi';
 import Link from 'next/link';
 import './globals.css';
 import { Button } from '@nextui-org/react';
