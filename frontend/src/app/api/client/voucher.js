@@ -1,9 +1,9 @@
-import { methods } from "@/app/configs/axiosConfigs/methods.server";
+import { methods } from '@/app/configs/axiosConfigs/methods.client';
 
-const url = "/vouchers"
-export const createVoucher= (data) => {
-    return methods.post(`${url}/create`, JSON.stringify(data));
-}
-export const getVoucher= () => {
-    return methods.get(`${url}`);
-}
+const url = '/vouchers';
+export const createVoucher = data => {
+  return methods.post(`${url}/create`, JSON.stringify(data));
+};
+export const getVoucher = () => {
+  return methods.get(`${url}`);
+};
