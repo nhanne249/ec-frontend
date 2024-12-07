@@ -107,13 +107,13 @@ const OrderManagement = () => {
               : orders.length > 0 &&
                 orders.map((order, index) => (
                   <TableRow key={index}>
-                    <TableCell>{order.userId}</TableCell>
-                    <TableCell>{order.status}</TableCell>
-                    <TableCell>{order.paymentStatus}</TableCell>
-                    <TableCell>{order.paymentMethod}</TableCell>
-                    <TableCell className="text-green-500 font-medium">{`$${order.totalAmount.toFixed(2)}`}</TableCell>
-                    <TableCell>{order.orderDate.split("T")[0]}</TableCell>
-                    <TableCell>{order.deliveryDate.split("T")[0]}</TableCell>
+                    <TableCell>{order?.userId}</TableCell>
+                    <TableCell>{order?.status}</TableCell>
+                    <TableCell>{order?.paymentStatus}</TableCell>
+                    <TableCell>{order?.paymentMethod}</TableCell>
+                    <TableCell className="text-green-500 font-medium">{`$${order?.totalAmount.toFixed(2)}`}</TableCell>
+                    <TableCell>{order?.orderDate.split("T")[0]}</TableCell>
+                    <TableCell>{order?.deliveryDate.split("T")[0]}</TableCell>
                     <TableCell>
                       <div className="flex flex-row space-x-2 justify-center">
                         <Button onClick={() => handleViewOrder(order)} size="sm">
