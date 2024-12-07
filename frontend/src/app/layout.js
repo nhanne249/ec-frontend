@@ -55,7 +55,7 @@ export default async function RootLayout({ children }) {
             <div className="w-full flex-grow pt-14 bg-slate-100">
                 {children}
             </div>
-            <div className="h-auto bg-sky-800 grid md:grid-rows-2 md:grid-cols-1 lg:grid-cols-2 lg:grid-rows-1 place-items-center py-3">
+            <div className="h-auto bg-gradient-to-r from-blue-200 to-blue-400 grid md:grid-rows-2 md:grid-cols-1 lg:grid-cols-2 lg:grid-rows-1 place-items-center py-3">
               <div className="flex flex-col">
                 <div className="flex flex-row gap-5">
                   <div className="text-lg font-medium text-slate-300">Address:</div>
