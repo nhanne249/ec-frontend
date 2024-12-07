@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import './globals.css';
 import { ToastContainer } from 'react-toastify';
-import { Image } from '@nextui-org/react';
+import Image from "next/image"
 import 'react-toastify/dist/ReactToastify.css';
 import { CartProvider } from './utils/Context';
 import CartBtn from './utils/components/CartBtn';
@@ -22,12 +22,7 @@ export default async function RootLayout({ children }) {
         <Providers>
             <div className="w-full lg:min-h-16 min-h-48 h-48 lg:h-16 px-5 lg:fixed top-0 left-0 lg:z-50 bg-white shadow-md">
               <div className="w-full grid h-full md:grid-rows-3 md:grid-cols-1 lg:grid-cols-3 lg:grid-rows-1">
-                <Link
-                  href="/"
-                  className="w-fit h-16 block !text-black font-semibold text-3xl lg:place-self-start place-self-center"
-                >
-                  <Image src={logoImg} alt={"logo"} width={40} height={40} />
-                </Link>
+                  <Image src={logoImg} alt={"logo"} width={60} height={60} className='lg:place-self-start place-self-center'/>
                 <div className="w-full h-full flex flex-row gap-1">
                   <div className="w-1/3 text-center group h-full !text-black relative font-semibold after:absolute after:h-0 after:w-0 after:bg-sky-800 after:left-1/2 overflow-hidden after:bottom-0 after:hover:h-1 after:hover:w-1 after:translate-x-full after:hover:scale-x-[300] after:hover:transition-all after:hover:duration-500 after:transition-all after:duration-500 transition-all duration-500 text-2xl">
                     <Link href="/" className="w-full h-full block content-center">
