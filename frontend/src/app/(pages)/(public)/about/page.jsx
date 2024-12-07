@@ -11,7 +11,7 @@ const About = () => {
         <div className="text-center text-white container mx-auto px-4">
           <h1 className="text-5xl font-bold mb-4">Our Beauty Philosophy</h1>
           <p className="text-xl max-w-2xl mx-auto">
-            At Beauty Essentials, we believe in empowering individuals through thoughtful, sustainable, and scientifically-backed skincare solutions.
+            {"At Beauty Essentials, we believe in empowering individuals through thoughtful, sustainable, and scientifically-backed skincare solutions."}
           </p>
         </div>
       </div>
@@ -22,12 +22,12 @@ const About = () => {
           <div className="h-full">
             <h2 className="text-3xl font-bold mb-6 text-blue-600">Our Story</h2>
             <p className="text-gray-700 mb-4">
-              8GROUP was founded with a passion for clean beauty. Tired of harmful chemicals and artificial additives in conventional products, we set out to
-              create a line of beauty solutions that are both effective and gentle on the skin. Each product is thoughtfully crafted, using sustainably sourced
-              ingredients that nourish your skin and respect the environment.
+              {
+                "8GROUP was founded with a passion for clean beauty. Tired of harmful chemicals and artificial additives in conventional products, we set out to create a line of beauty solutions that are both effective and gentle on the skin. Each product is thoughtfully crafted, using sustainably sourced ingredients that nourish your skin and respect the environment."
+              }
             </p>
             <p className="text-gray-700 mb-4">
-              From small beginnings, we've grown into a trusted brand for those seeking safe, natural, and eco-friendly beauty alternatives.
+              {"From small beginnings, we've grown into a trusted brand for those seeking safe, natural, and eco-friendly beauty alternatives."}
             </p>
           </div>
 
@@ -36,52 +36,54 @@ const About = () => {
             <p className="text-gray-700 mb-4">
               <b>Natural Ingredients</b>
               <br />
-              Our products are made with love and care, free from parabens, sulfates, and synthetic fragrances. We use plant-based extracts, essential oils, and
-              other earth-derived ingredients that bring out your skin's natural glow.
+              {
+                "Our products are made with love and care, free from parabens, sulfates, and synthetic fragrances. We use plant-based extracts, essential oils, and other earth-derived ingredients that bring out your skin's natural glow."
+              }
             </p>
             <p className="text-gray-700 mb-4">
               <b>Sustainability</b>
               <br />
-              Caring for your skin shouldn't harm the planet. That's why we prioritize eco-friendly packaging, ethical sourcing, and cruelty-free practices.
+              {"Caring for your skin shouldn't harm the planet. That's why we prioritize eco-friendly packaging, ethical sourcing, and cruelty-free practices."}
             </p>
             <p className="text-gray-700 mb-4">
               <b>For Everyone</b>
               <br />
-              We believe beauty should be inclusive. Whether you have sensitive, oily, or combination skin, we've got products tailored to your needs.
+              {"We believe beauty should be inclusive. Whether you have sensitive, oily, or combination skin, we've got products tailored to your needs."}
             </p>
           </div>
 
           <div className="h-full">
-            <h2 className="text-3xl font-bold mb-6 text-blue-600">Why Choose Us?</h2>
+            <h2 className="text-3xl font-bold mb-6 text-blue-600">{"Why Choose Us?"}</h2>
             <p className="text-gray-700 mb-4">
-              <b>Proven Results</b>
+              <b>{"Proven Results"}</b>
               <br />
-              Trusted by thousands, our products deliver visible improvements for healthier, radiant skin.
+              {"Trusted by thousands, our products deliver visible improvements for healthier, radiant skin."}
             </p>
             <p className="text-gray-700 mb-4">
-              <b>Safe and Gentle</b>
+              <b>{"Safe and Gentle"}</b>
               <br />
-              Perfect for all skin types, including sensitive skin.
+              {"Perfect for all skin types, including sensitive skin."}
             </p>
             <p className="text-gray-700 mb-4">
-              <b>Ethical Practices</b>
+              <b>{"Ethical Practices"}</b>
               <br />
-              We stand by cruelty-free, environmentally responsible values.
+              {"We stand by cruelty-free, environmentally responsible values."}
             </p>
           </div>
 
           <div className="h-full">
             <h2 className="text-3xl font-bold mb-6 text-blue-600">Join Our Journey</h2>
             <p className="text-gray-700 mb-4">
-              8GROUP isn't just a brand—it's a community of individuals who care about what they put on their skin and the impact it has on the world. We invite
-              you to explore our collection, discover the benefits of natural beauty, and become part of a movement that celebrates self-care and
-              sustainability.
+              {
+                "8GROUP isn't just a brand—it's a community of individuals who care about what they put on their skin and the impact it has on the world. We invite you to explore our collection, discover the benefits of natural beauty, and become part of a movement that celebrates self-care and sustainability."
+              }
             </p>
             <p className="text-gray-700 mb-4">
               <b>Connect with Us!</b>
               <br />
-              Have questions or feedback? We'd love to hear from you. Reach out to us at Email. Let's embrace beauty the way nature intended—pure, simple, and
-              effective.
+              {
+                "Have questions or feedback? We'd love to hear from you. Reach out to us at Email. Let's embrace beauty the way nature intended—pure, simple, and effective."
+              }
             </p>
           </div>
           <Image src="/api/placeholder/500/500" alt="Beauty Essentials Founder" className="rounded-2xl shadow-lg" />
