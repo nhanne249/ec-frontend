@@ -11,14 +11,12 @@ export async function generateMetadata({ params }) {
   return {
     title: product.name,
     url: "https://ec-frontend-delta.vercel.app/",
+    description: product.desc,
     keywords: [product.benefit, product.category],
     openGraph: {
-      images: [
-        {
-          url: product.images[0],
-          alt: "Hình ảnh sản phẩm",
-        },
-      ],
+      title: product.name,
+      description: product.desc,
+      images: [product.images[0]],
     },
   };
 }
