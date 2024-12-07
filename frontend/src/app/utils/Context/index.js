@@ -20,19 +20,26 @@ export const CartProvider = ({ children }) => {
     useEffect(() => {
     if (hasCookie('token') && getCookie('role')== 'customer' && cartClient.length ===0 ) {
       getCartServerData().catch(res => {
-        if(!res.response.data.error)
-        setCartServer(res.response.data.items.reverse())
+        if(!res.response.data.error){
+        setCartServer(res.response.data.items.reverse()); setNeedFetch(true)}
       })
     }
     else if (hasCookie('token') && getCookie('role') == 'customer' && cartClient.length > 0) {
-      createCartData({items:cartClient}).then((res)=>setCartServer(res.productsInfo.items.reverse()))
+      createCartData({items:cartClient}).then((res)=>{setCartServer(res.productsInfo.items.reverse()); setNeedFetch(true)})
     }
     else if(cartClient!=[]){
-      getCartDataNoLogin({items:cartClient}).then((res)=>setCartServer(res.items.reverse()))
+      getCartDataNoLogin({ items: cartClient }).then((res) => { setCartServer(res.items.reverse()); setNeedFetch(true)})
     }
     }, [needFetch])
+  
   useEffect(()=>{setCartClient(typeof window !== 'undefined' && localStorage.getItem("cart")
-      ? JSON.parse(typeof window !== 'undefined' && localStorage.getItem("cart")):[]);},[cartNoti])
+    ? JSON.parse(typeof window !== 'undefined' && localStorage.getItem("cart")) : []);
+  }, [cartNoti])
+  
+  useEffect(() => {
+    if (cartClient.length != cartServer.length) setNeedFetch(false);
+  }, [cartClient]);
+
   useEffect(() => {
     typeof window !== 'undefined' && localStorage.setItem("cart", JSON.stringify(cartClient));
 

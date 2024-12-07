@@ -8,7 +8,7 @@ import { Button } from "@nextui-org/react";
 
 const Cart = () => {
   const router = useRouter();
-  const { role, cartServer, cartNoti, setCartClient, setNeedFetch } = useContext(MyContext);
+  const { role, cartServer, cartNoti, setCartClient, setNeedFetch, cartClient } = useContext(MyContext);
 
   const [total, setTotal] = useState(
     cartServer.reduce((sum, item) => {

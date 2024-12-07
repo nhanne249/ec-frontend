@@ -4,7 +4,7 @@ import { Button } from "@nextui-org/react";
 import { MyContext } from "@/app/utils/Context";
 
 const AddToCartBtn = ({ id }) => {
-  const { cartNoti, setCartNoti } = useContext(MyContext);
+  const { cartNoti, setCartNoti, setCartClient } = useContext(MyContext);
 
   return (
     <Button
@@ -18,6 +18,7 @@ const AddToCartBtn = ({ id }) => {
           cart.push({ productId: id, quantity: 1 });
         }
         typeof window !== "undefined" && localStorage.setItem("cart", JSON.stringify(cart));
+        setCartClient(cart);
         setCartNoti(cartNoti + 1);
       }}
     >
