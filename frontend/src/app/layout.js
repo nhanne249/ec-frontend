@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import './globals.css';
 import { ToastContainer } from 'react-toastify';
-import {Image} from 'next/image'
+import { Image } from '@nextui-org/react';
 import 'react-toastify/dist/ReactToastify.css';
 import { CartProvider } from './utils/Context';
 import CartBtn from './utils/components/CartBtn';
