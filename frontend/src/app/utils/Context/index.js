@@ -8,13 +8,13 @@ export const MyContext = createContext();
 export const CartProvider = ({ children }) => {
 
   const [role, setRole] = useState(hasCookie('role')? getCookie('role'):'guest')
-  const [cartNoti, setCartNoti] = useState(localStorage.getItem("cart")
-      ? JSON.parse(localStorage.getItem("cart")).reduce((sum, item) => {
+  const [cartNoti, setCartNoti] = useState(typeof window !== 'undefined' && localStorage.getItem("cart")
+      ? JSON.parse(typeof window !== 'undefined' && localStorage.getItem("cart")).reduce((sum, item) => {
           return sum + (item.quantity || 0);
         }, 0)
       : 0);
-  const [cartClient, setCartClient] = useState(localStorage.getItem("cart")
-      ? JSON.parse(localStorage.getItem("cart")):[]);
+  const [cartClient, setCartClient] = useState(typeof window !== 'undefined' && localStorage.getItem("cart")
+      ? JSON.parse(typeof window !== 'undefined' && localStorage.getItem("cart")):[]);
   const [cartServer, setCartServer] = useState([]);
   const [needFetch, setNeedFetch] = useState(false);
     useEffect(() => {
@@ -31,10 +31,10 @@ export const CartProvider = ({ children }) => {
       getCartDataNoLogin({items:cartClient}).then((res)=>setCartServer(res.items.reverse()))
     }
     }, [needFetch])
-  useEffect(()=>{setCartClient(localStorage.getItem("cart")
-      ? JSON.parse(localStorage.getItem("cart")):[]);},[cartNoti])
+  useEffect(()=>{setCartClient(typeof window !== 'undefined' && localStorage.getItem("cart")
+      ? JSON.parse(typeof window !== 'undefined' && localStorage.getItem("cart")):[]);},[cartNoti])
   useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cartClient));
+    typeof window !== 'undefined' && localStorage.setItem("cart", JSON.stringify(cartClient));
 
     setCartServer((prevCartServer) =>
       prevCartServer
