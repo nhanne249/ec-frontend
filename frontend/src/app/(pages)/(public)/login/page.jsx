@@ -63,7 +63,7 @@ export default function Login() {
   if (hasCookie("token")) router.push(`/${getCookie("role")}`);
 
   return (
-    <div className="w-full h-full flex justify-center items-center flex-col bg-auth">
+    <div className="w-full min-h-screen h-full flex justify-center items-center flex-col bg-auth">
       <div className="w-fit h-fit flex justify-center items-center flex-col bg-white bg-opacity-70 p-5 rounded-lg">
         <h1 className="text-5xl font-bold h-20 pb-3 pt-5 text-sky-800">{"Login"}</h1>
         <h1 className="text-xs h-auto pb-5 text-sky-800">{"Welcome back!"}</h1>
