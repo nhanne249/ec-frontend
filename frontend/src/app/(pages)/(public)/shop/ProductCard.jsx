@@ -71,7 +71,7 @@ const ProductCard = ({ product }) => {
           <h3 className="text-xl font-semibold">{product.name}</h3>
           <p className="text-sm text-gray-500">{product.brand}</p>
           <div className="flex justify-between items-center mt-2">
-            <p className="text-green-500 font-bold">${product.price}</p>
+            <p className="text-green-500 font-bold">{String(product.price).replace(/\B(?=(\d{3})+(?!\d))/g, ".") + " VND"}</p>
           </div>
           <p className="text-sm text-gray-500 mt-1">{product.capacity}</p>
 
