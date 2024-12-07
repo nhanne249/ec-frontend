@@ -1,11 +1,13 @@
 import Link from 'next/link';
 import './globals.css';
 import { ToastContainer } from 'react-toastify';
+import {Image} from 'next/image'
 import 'react-toastify/dist/ReactToastify.css';
 import { CartProvider } from './utils/Context';
 import CartBtn from './utils/components/CartBtn';
 import UserBtn from './utils/components/UserBtn';
 import { Providers } from './providers';
+import logo from "./assets/img/logo.png"
 
 export const metadata = {
   title: '8GROUP',
@@ -24,7 +26,7 @@ export default function RootLayout({ children }) {
                   href="/"
                   className="w-fit h-16 block !text-black font-semibold text-3xl lg:place-self-start place-self-center"
                 >
-                  Logo
+                  <Image src={ logo} href="logo" width={40} height={40} />
                 </Link>
                 <div className="w-full h-full flex flex-row gap-1">
                   <div className="w-1/3 text-center group h-full !text-black relative font-semibold after:absolute after:h-0 after:w-0 after:bg-sky-800 after:left-1/2 overflow-hidden after:bottom-0 after:hover:h-1 after:hover:w-1 after:translate-x-full after:hover:scale-x-[300] after:hover:transition-all after:hover:duration-500 after:transition-all after:duration-500 transition-all duration-500 text-2xl">
