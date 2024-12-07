@@ -96,7 +96,7 @@ const Cart = () => {
   };
 
   return cartServer.length != 0 ? (
-    <div className="w-full h-full px-10 py-5 grid grid-cols-5 grid-rows-1 gap-4">
+    <div className="w-full min-h-screen h-full px-10 py-5 grid grid-cols-5 grid-rows-1 gap-4">
       <div className="col-span-4 flex flex-col border rounded-lg pt-5 pb-8 h-fit bg-white">
         <div className="px-2 pb-2 mb-4 font-medium text-4xl border-b w-1/2 text-gray-600">{"Your Cart"}</div>
         {cartServer.map((item) => {

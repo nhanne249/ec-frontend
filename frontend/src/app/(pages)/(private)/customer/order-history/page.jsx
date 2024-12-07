@@ -56,7 +56,7 @@ const OrderHistory = () => {
   };
 
   return (
-    <div className="container mx-auto py-8">
+    <div className="container mx-auto py-8 min-h-screen">
       <h1 className="text-3xl font-bold mb-6">Order History</h1>
       <Table aria-label="Order Table" css={{ height: "auto", minWidth: "100%" }}>
         <TableHeader>
