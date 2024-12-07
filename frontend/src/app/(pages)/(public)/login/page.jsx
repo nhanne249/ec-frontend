@@ -65,8 +65,8 @@ export default function Login() {
   return (
     <div className="w-full h-full flex justify-center items-center flex-col bg-auth">
       <div className="w-fit h-fit flex justify-center items-center flex-col bg-white bg-opacity-70 p-5 rounded-lg">
-        <h1 className="text-5xl font-bold h-20 pb-3 pt-5 text-sky-800">Login</h1>
-        <h1 className="text-xs h-auto pb-5 text-sky-800">Welcome back!</h1>
+        <h1 className="text-5xl font-bold h-20 pb-3 pt-5 text-sky-800">{"Login"}</h1>
+        <h1 className="text-xs h-auto pb-5 text-sky-800">{"Welcome back!"}</h1>
         <form onSubmit={handleSubmit} className="w-[400px] h-auto flex flex-col gap-3">
           <Input isRequired type="text" name="username" label="Username" className="" isClearable onChange={handleChange} />
           <Input isRequired type="password" name="password" label="Password" className="" isClearable onChange={handleChange} />
@@ -78,7 +78,7 @@ export default function Login() {
           </button>
         </form>
         <div className="w-full flex flex-row justify-around items-center">
-          <h1 className="text-sm h-fit text-sky-800 text-center">Don't have account?</h1>
+          <h1 className="text-sm h-fit text-sky-800 text-center">{"Don't have account?"}</h1>
           <button className="w-auto !text-sky-800 text-lg" onClick={() => router.push("/register")}>
             Register
           </button>

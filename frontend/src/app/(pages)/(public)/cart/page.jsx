@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect, useContext } from "react";
 import { useRouter } from "next/navigation";
+import { Image } from "@nextui-org/react";
 import { toast } from "react-toastify";
 import { MyContext } from "@/app/utils/Context";
 import { Button } from "@nextui-org/react";
@@ -100,7 +101,7 @@ const Cart = () => {
         {cartServer.map((item) => {
           return (
             <div key={item._id} className="w-auto h-20 grid grid-cols-10 grid-rows-1 gap-4 mx-3 border-b">
-              <img className="w-16 min-w-16 h-16" src={item.images[0]} alt="" />
+              <Image className="w-16 min-w-16 h-16" src={item.images[0]} alt="" />
               <div className="col-span-5 flex flex-col gap-1">
                 <div className="text-xl text-sky-800 font-semibold">{item.name}</div>
                 <div className="text-base text-red-600 font-semibold">{String(item.price).replace(/\B(?=(\d{3})+(?!\d))/g, ".") + " VND"}</div>

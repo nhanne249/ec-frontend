@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect, useContext } from "react";
-import { toast } from "react-toastify";
+import { Image } from "@nextui-org/react";
 import { MyContext } from "@/app/utils/Context";
 import { Button, Input } from "@nextui-org/react";
 import { getVoucherByCode } from "@/app/api/client/voucher";
@@ -67,7 +67,7 @@ const Order = () => {
     <form onSubmit={handleSubmit} className="w-full h-full px-10 py-5 grid grid-cols-5 grid-rows-1 gap-4">
       <div className="col-span-4 flex flex-col gap-5">
         <div className="flex flex-col border rounded-lg py-5 h-fit bg-white">
-          <div className="px-2 pb-2 mb-4 font-medium text-4xl border-b w-1/2 text-gray-600">Order's detail</div>
+          <div className="px-2 pb-2 mb-4 font-medium text-4xl border-b w-1/2 text-gray-600">{"Order's detail"}</div>
           <div className="px-2 pb-2 grid grid-cols-12 grid-rows-1 mb-4 border-b">
             <div className="col-span-6 font-medium text-2xl text-gray-600">Item</div>
             <div className="col-span-2 col-start-7 font-medium text-2xl text-gray-600 text-center">Cost</div>
@@ -77,7 +77,7 @@ const Order = () => {
           {cartServer.map((item) => {
             return (
               <div key={item._id} className="w-auto h-20 grid grid-cols-12 grid-rows-1 gap-4 mb-3 mx-3 border-b">
-                <img className="w-16 min-w-16 h-16 place-content-center" src={item.images[0]} alt="" />
+                <Image className="w-16 min-w-16 h-16 place-content-center" src={item.images[0]} alt="" />
                 <div className="text-xl text-green-800 font-semibold col-span-5 place-content-center">{item.name}</div>
                 <div className="text-base text-red-600 font-semibold col-span-2 col-start-7 place-content-center text-center">
                   {String(item.price).replace(/\B(?=(\d{3})+(?!\d))/g, ".") + " VND"}
