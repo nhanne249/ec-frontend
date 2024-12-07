@@ -23,7 +23,7 @@ export async function generateMetadata({ params }) {
 
 const StarRating = ({ rate }) => {
   return (
-    <div className="flex items-center space-x-2">
+    <div className="flex items-center space-x-2 min-h-screen">
       <div className="flex">
         {Array(5)
           .fill(0)
