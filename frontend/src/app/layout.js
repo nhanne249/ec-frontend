@@ -58,15 +58,15 @@ export default async function RootLayout({ children }) {
             <div className="h-auto bg-gradient-to-r from-blue-200 to-blue-400 grid md:grid-rows-2 md:grid-cols-1 lg:grid-cols-2 lg:grid-rows-1 place-items-center py-3">
               <div className="flex flex-col">
                 <div className="flex flex-row gap-5">
-                  <div className="text-lg font-medium text-slate-700">Address:</div>
+                  <div className="text-lg font-medium text-slate-500">Address:</div>
                   <div className="text-lg font-medium text-white">Đông Hoà, Thành Phố Thủ Đức, Bình Dương, Vietnam</div>
                 </div>
                 <div className="flex flex-row gap-5">
-                  <div className="text-lg font-medium text-slate-700">Phone:</div>
+                  <div className="text-lg font-medium text-slate-500">Phone:</div>
                   <div className="text-lg font-medium text-white">0123456789</div>
                 </div>
                 <div className="flex flex-row gap-5">
-                  <div className="text-lg font-medium text-slate-700">Email:</div>
+                  <div className="text-lg font-medium text-slate-500">Email:</div>
                   <div className="text-lg font-medium text-white">fakemail@gmail.com</div>
                 </div>
               </div>
