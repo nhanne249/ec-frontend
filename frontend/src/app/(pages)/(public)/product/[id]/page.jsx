@@ -23,7 +23,7 @@ export async function generateMetadata({ params }) {
 
 const StarRating = ({ rate }) => {
   return (
-    <div className="flex items-center space-x-2 min-h-screen">
+    <div className="flex items-center space-x-2">
       <div className="flex">
         {Array(5)
           .fill(0)
@@ -66,7 +66,7 @@ const ProductPage = async ({ params }) => {
   });
   return (
     product && (
-      <div className="container mx-auto mt-6">
+      <div className="container mx-auto mt-6 min-h-screen">
         <div className="grid grid-cols-6 grid-rows-1 gap-4 pb-10">
           <div className="col-span-2 col-start-2 w-full h-full flex justify-center">
             <Image className="w-full" alt="Product image" src={product.images[0]} />
