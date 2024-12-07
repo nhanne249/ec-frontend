@@ -1,6 +1,6 @@
 import React from "react";
 import { useRouter } from "next/navigation";
-import { Button, Card, CardBody, CardFooter, CardHeader, Image } from "@nextui-org/react";
+import { Card, CardBody, CardFooter, CardHeader, Image } from "@nextui-org/react";
 import { FaStar } from "react-icons/fa";
 import AddToCartBtn from "@/app/utils/components/AddToCartBtn";
 
@@ -64,7 +64,7 @@ const ProductCard = ({ product }) => {
                 : "https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-website-design-mobile-app-no-photo-available_87543-11093.jpg"
             }
             alt={product.name}
-            className="w-full object-cover rounded-none"
+            className="w-full object-cover rounded-none aspect-square"
           />
         </CardHeader>
         <CardBody>
