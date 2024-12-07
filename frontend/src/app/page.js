@@ -34,7 +34,7 @@ export default async function Home() {
               <CardBody className="overflow-visible py-2 justify-between">
                 <Image
                   alt={product.name}
-                  className="object-cover rounded-xl"
+                  className="object-cover rounded-xl w-full aspect-square"
                   src={product.images[0]}
                 />
                   <p className="font-semibold text-lg text-blue-600">{String(product.price).replace(/\B(?=(\d{3})+(?!\d))/g, ".") + " VND"}</p>
