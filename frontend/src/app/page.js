@@ -31,7 +31,7 @@ export default async function Home() {
                 <h4 className="font-bold text-lg">{product.name}</h4>
                 <small className="text-default-500">{product.description}</small>
               </CardHeader>
-              <CardBody className="overflow-visible py-2">
+              <CardBody className="overflow-visible py-2 justify-between">
                 <Image
                   alt={product.name}
                   className="object-cover rounded-xl"

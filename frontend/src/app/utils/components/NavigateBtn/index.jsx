@@ -1,5 +1,5 @@
 "use client";
-import { Button } from "@nextui-org/react";
+import { Button } from "@nextui-org/button";
 import { redirect } from "next/navigation";
 const NavigateBtn = ({ link, content }) => {
   return (
