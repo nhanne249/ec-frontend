@@ -10,8 +10,15 @@ export async function generateMetadata({ params }) {
 
   return {
     title: product.name,
+    url: "https://ec-frontend-delta.vercel.app/",
+    keywords: [product.benefit, product.category],
     openGraph: {
-      images: [product.images[0]],
+      images: [
+        {
+          url: product.images[0],
+          alt: "Hình ảnh sản phẩm",
+        },
+      ],
     },
   };
 }
