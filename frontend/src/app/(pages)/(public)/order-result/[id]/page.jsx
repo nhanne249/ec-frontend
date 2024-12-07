@@ -15,7 +15,7 @@ const OrderResult = ({ params, searchParams }) => {
 
 
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center gap-5">
+    <div className="w-full min-h-screen h-full flex flex-col items-center justify-center gap-5">
       <Image alt={cancel == "true" ? "Cancel" : "Success"} src={cancel == "true" ? cancelImg : successImg} width={150} height={150} />
       <div className="flex flex-row">
         <div className="text-3xl font-medium text-gray-600">Order code : </div>

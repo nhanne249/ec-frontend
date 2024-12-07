@@ -64,7 +64,7 @@ const Order = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="w-full h-full px-10 py-5 grid grid-cols-5 grid-rows-1 gap-4">
+    <form onSubmit={handleSubmit} className="w-full min-h-screen h-full px-10 py-5 grid grid-cols-5 grid-rows-1 gap-4">
       <div className="col-span-4 flex flex-col gap-5">
         <div className="flex flex-col border rounded-lg py-5 h-fit bg-white">
           <div className="px-2 pb-2 mb-4 font-medium text-4xl border-b w-1/2 text-gray-600">{"Order's detail"}</div>
