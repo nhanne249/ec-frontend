@@ -1,11 +1,15 @@
 "use client";
 import { deleteCookie } from "cookies-next";
 import { redirect } from "next/navigation";
+import { MyContext } from "@/app/utils/Context";
+import { useContext } from "react";
 
 const LogoutBtn = () => {
+  const { setRole } = useContext(MyContext);
   const handleClickLogoutBtn = () => {
     deleteCookie("role");
     deleteCookie("token");
+    setRole("guest");
     redirect("/");
   };
   return (
