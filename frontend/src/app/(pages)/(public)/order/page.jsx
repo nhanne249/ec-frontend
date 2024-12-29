@@ -47,10 +47,10 @@ const Order = () => {
       paymentMethod: "PAYPAL",
       shippingAddress: {
         street: e.target[0].value,
-        city: e.target[1].value,
-        zipCode: e.target[2].value,
-        state: e.target[3].value,
-        country: e.target[4].value,
+        city: e.target[2].value,
+        zipCode: e.target[4].value,
+        state: e.target[6].value,
+        country: e.target[8].value,
       },
       voucherCode: voucher,
     };
